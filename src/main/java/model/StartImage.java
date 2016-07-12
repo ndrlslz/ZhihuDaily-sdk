@@ -1,7 +1,17 @@
 package model;
 
+/**
+ * Startup interface image
+ */
 public class StartImage {
+    /**
+     * Image text
+     */
     private String text;
+
+    /**
+     * Image url
+     */
     private String img;
 
     /**

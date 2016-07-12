@@ -1,11 +1,11 @@
 package api;
 
 import model.StartImage;
+import model.Version;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-import java.io.IOException;
 
 public interface ZhihuDaily {
 
@@ -16,6 +16,23 @@ public interface ZhihuDaily {
      * @return {@link StartImage}
      */
     @GET("start-image/{size}")
-    Call<StartImage> getStartImage(@Path("size") String size) throws IOException;
+    Call<StartImage> getStartImage(@Path("size") String size);
 
+    /**
+     * Get app version on android device
+     *
+     * @param currentVersion current version
+     * @return {@link Version}
+     */
+    @GET("version/android/{version}")
+    Call<Version> getVersionOfAndroid(@Path("version") String currentVersion);
+
+    /**
+     * Get app version on ios device
+     *
+     * @param currentVersion current version
+     * @return {@link Version}
+     */
+    @GET("version/ios/{version}")
+    Call<Version> getVersionOfIOS(@Path("version") String currentVersion);
 }

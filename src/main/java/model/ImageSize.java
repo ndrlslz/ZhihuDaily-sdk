@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Image size
+ */
 public interface ImageSize {
     String SIZE_1080P = "1080*1776";
     String SIZE_720P = "720*1184";

@@ -1,6 +1,7 @@
 import api.ZhihuDaily;
 import model.ImageSize;
 import model.StartImage;
+import model.Version;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,6 +24,26 @@ public class ZhihuDailyUnitTest {
         assertNotNull(startImage);
         assertNotNull(startImage.getImg());
         assertNotNull(startImage.getText());
+    }
+
+    @Test
+    public void testGetVersionOfAndroid() throws IOException {
+        final String currentVersion = "2.3.0";
+
+        Version version = zhihuDaily.getVersionOfAndroid(currentVersion).execute().body();
+        assertNotNull(version);
+        assertNotNull(version.getLatest());
+        assertNotNull(version.getStatus());
+    }
+
+    @Test
+    public void testGetVersionOfIOS() throws IOException {
+        final String currentVersion = "2.3.0";
+
+        Version version = zhihuDaily.getVersionOfIOS(currentVersion).execute().body();
+        assertNotNull(version);
+        assertNotNull(version.getStatus());
+        assertNotNull(version.getLatest());
     }
 
 }

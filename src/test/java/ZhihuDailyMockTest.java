@@ -2,6 +2,7 @@ import api.ZhihuDaily;
 import com.google.gson.Gson;
 import model.ImageSize;
 import model.StartImage;
+import model.Version;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.Before;
@@ -37,7 +38,7 @@ public class ZhihuDailyMockTest {
         response.setImg("https://pic2.zhimg.com/17fb71ff2026d3ec9e1e096533a9f884.jpg");
         response.setText("Ian Schneider");
 
-        mockServer(response);
+        mockServerWith(response);
 
         StartImage startImage = zhihuDaily.getStartImage(ImageSize.SIZE_1080P).execute().body();
         assertNotNull(startImage);
@@ -45,7 +46,37 @@ public class ZhihuDailyMockTest {
         assertEquals(startImage.getText(), response.getText());
     }
 
-    public static void mockServer(Object o) {
+    @Test
+    public void testGetVersionOfAndroid() throws IOException {
+        Version response = new Version();
+        response.setLatest("2.6.0");
+        response.setStatus(1);
+        response.setMsg("test-msg");
+
+        mockServerWith(response);
+        Version version = zhihuDaily.getVersionOfAndroid("2.3.0").execute().body();
+        assertNotNull(version);
+        assertEquals(version.getLatest(), response.getLatest());
+        assertEquals(version.getStatus(), response.getStatus());
+        assertEquals(version.getMsg(), response.getMsg());
+    }
+
+    @Test
+    public void testGetVersionOfIOS() throws IOException {
+        Version response = new Version();
+        response.setLatest("2.6.0");
+        response.setStatus(1);
+        response.setMsg("test-msg");
+
+        mockServerWith(response);
+        Version version = zhihuDaily.getVersionOfIOS("2.3.0").execute().body();
+        assertNotNull(version);
+        assertEquals(version.getLatest(), response.getLatest());
+        assertEquals(version.getStatus(), response.getStatus());
+        assertEquals(version.getMsg(), response.getMsg());
+    }
+
+    public static void mockServerWith(Object o) {
         server.enqueue(new MockResponse().setBody(gson.toJson(o)));
     }
 

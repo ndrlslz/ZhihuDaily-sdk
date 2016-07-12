@@ -1,6 +1,7 @@
 import api.ZhihuDaily;
 import model.ImageSize;
 import model.StartImage;
+import model.Version;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,5 +27,11 @@ public class Test {
             public void onFailure(Call<StartImage> call, Throwable t) {
             }
         });
+
+        Version version = zhihuDaily.getVersionOfAndroid("2.3.0").execute().body();
+        System.out.println(version);
+
+        Version iosVersion = zhihuDaily.getVersionOfIOS("2.5.0").execute().body();
+        System.out.println(iosVersion);
     }
 }
