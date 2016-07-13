@@ -1,5 +1,6 @@
 package api;
 
+import model.LatestNews;
 import model.StartImage;
 import model.Version;
 import retrofit2.http.GET;
@@ -22,7 +23,7 @@ public interface ZhihuDaily {
      * @param size image size, see {@link model.ImageSize}
      * @return {@link StartImage}
      */
-    @GET("start-image123/{size}")
+    @GET("start-image/{size}")
     ServiceCall<StartImage> getStartImage(@Path("size") String size);
 
     /**
@@ -42,4 +43,12 @@ public interface ZhihuDaily {
      */
     @GET("version/ios/{version}")
     ServiceCall<Version> getVersionOfIOS(@Path("version") String currentVersion);
+
+    /**
+     * Get latest news
+     *
+     * @return {@link LatestNews}
+     */
+    @GET("news/latest")
+    ServiceCall<LatestNews> getLatestNews();
 }

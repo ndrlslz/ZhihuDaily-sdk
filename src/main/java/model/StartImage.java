@@ -2,6 +2,13 @@ package model;
 
 /**
  * Startup interface image
+ * <p>
+ * Json Example:
+ * <p>
+ * {
+ *      text: "© Fido Dido",
+ *      img: "http://p2.zhimg.com/10/7b/107bb4894b46d75a892da6fa80ef504a.jpg"
+ * }
  */
 public class StartImage {
     /**

@@ -1,5 +1,6 @@
 import api.ZhihuDaily;
 import model.ImageSize;
+import model.LatestNews;
 import model.StartImage;
 import model.Version;
 import org.junit.Before;
@@ -7,8 +8,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class ZhihuDailyUnitTest {
     private ZhihuDaily zhihuDaily;
@@ -45,6 +45,19 @@ public class ZhihuDailyUnitTest {
         assertNotNull(version);
         assertNotNull(version.getStatus());
         assertNotNull(version.getLatest());
+    }
+
+    @Test
+    public void testGetLatestNews() throws IOException {
+        LatestNews latestNews = zhihuDaily.getLatestNews().execute();
+
+        assertNotNull(latestNews);
+        assertNotNull(latestNews.getDate());
+        assertNotNull(latestNews.getStories());
+        assertTrue(latestNews.getStories().size() > 0);
+        assertNotNull(latestNews.getTop_stories());
+        assertTrue(latestNews.getTop_stories().size() > 0);
+
     }
 
 }

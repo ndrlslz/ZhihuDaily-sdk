@@ -2,6 +2,14 @@ package model;
 
 /**
  * ZhihuDaily version
+ * <p>
+ * Json Example:
+ * <p>
+ * {
+ *      "status": 1,
+ *      "msg": "【更新内容】",
+ *      "latest": "2.2.0"
+ * }
  */
 public class Version {
     /**
@@ -17,7 +25,7 @@ public class Version {
     private String msg;
 
     /**
-     * Latest version
+     * LatestNews version
      */
     private String latest;
 

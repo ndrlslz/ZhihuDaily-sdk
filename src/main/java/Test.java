@@ -1,5 +1,6 @@
 import api.ZhihuDaily;
 import model.ImageSize;
+import model.LatestNews;
 import model.StartImage;
 import model.Version;
 import retrofit2.Call;
@@ -35,5 +36,11 @@ public class Test {
 
         Version iosVersion = zhihuDaily.getVersionOfIOS("2.5.0").execute();
         System.out.println(iosVersion);
+
+        LatestNews latestNews = zhihuDaily.getLatestNews().execute();
+        System.out.println(latestNews.getDate());
+
+        latestNews.getStories().forEach(System.out::println);
+        latestNews.getTop_stories().forEach(System.out::println);
     }
 }

@@ -62,7 +62,7 @@ public class ServiceCallAdapterFactory extends CallAdapter.Factory {
                 }
 
                 @Override
-                public void enqueue(ServiceCallback<R> callback) {
+                public void enqueue(final ServiceCallback<R> callback) {
                     call.enqueue(new Callback<R>() {
                         @Override
                         public void onResponse(Call<R> call, Response<R> response) {
@@ -106,7 +106,7 @@ public class ServiceCallAdapterFactory extends CallAdapter.Factory {
                 }
 
                 @Override
-                public void enqueue(ServiceCallback<Response<R>> callback) {
+                public void enqueue(final ServiceCallback<Response<R>> callback) {
                     call.enqueue(new Callback<R>() {
                         @Override
                         public void onResponse(Call<R> call, Response<R> response) {
