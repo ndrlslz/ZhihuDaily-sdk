@@ -40,7 +40,7 @@ public class ZhihuDailyMockTest {
 
         mockServerWith(response);
 
-        StartImage startImage = zhihuDaily.getStartImage(ImageSize.SIZE_1080P).execute().body();
+        StartImage startImage = zhihuDaily.getStartImage(ImageSize.SIZE_1080P).execute();
         assertNotNull(startImage);
         assertEquals(startImage.getImg(), response.getImg());
         assertEquals(startImage.getText(), response.getText());
@@ -54,7 +54,8 @@ public class ZhihuDailyMockTest {
         response.setMsg("test-msg");
 
         mockServerWith(response);
-        Version version = zhihuDaily.getVersionOfAndroid("2.3.0").execute().body();
+
+        Version version = zhihuDaily.getVersionOfAndroid("2.3.0").execute();
         assertNotNull(version);
         assertEquals(version.getLatest(), response.getLatest());
         assertEquals(version.getStatus(), response.getStatus());
@@ -69,7 +70,8 @@ public class ZhihuDailyMockTest {
         response.setMsg("test-msg");
 
         mockServerWith(response);
-        Version version = zhihuDaily.getVersionOfIOS("2.3.0").execute().body();
+
+        Version version = zhihuDaily.getVersionOfIOS("2.3.0").execute();
         assertNotNull(version);
         assertEquals(version.getLatest(), response.getLatest());
         assertEquals(version.getStatus(), response.getStatus());

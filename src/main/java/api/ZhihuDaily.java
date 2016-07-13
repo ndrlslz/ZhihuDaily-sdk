@@ -2,11 +2,18 @@ package api;
 
 import model.StartImage;
 import model.Version;
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import service.ServiceCall;
 
 
+/**
+ * ZhihuDaily API
+ *
+ * @see <a href=
+ * "https://github.com/izzyleung/ZhihuDailyPurify/wiki/%E7%9F%A5%E4%B9%8E%E6%97%A5%E6%8A%A5-API-%E5%88%86%E6%9E%90">
+ * ZhihuDaily API</a>
+ */
 public interface ZhihuDaily {
 
     /**
@@ -15,8 +22,8 @@ public interface ZhihuDaily {
      * @param size image size, see {@link model.ImageSize}
      * @return {@link StartImage}
      */
-    @GET("start-image/{size}")
-    Call<StartImage> getStartImage(@Path("size") String size);
+    @GET("start-image123/{size}")
+    ServiceCall<StartImage> getStartImage(@Path("size") String size);
 
     /**
      * Get app version on android device
@@ -25,7 +32,7 @@ public interface ZhihuDaily {
      * @return {@link Version}
      */
     @GET("version/android/{version}")
-    Call<Version> getVersionOfAndroid(@Path("version") String currentVersion);
+    ServiceCall<Version> getVersionOfAndroid(@Path("version") String currentVersion);
 
     /**
      * Get app version on ios device
@@ -34,5 +41,5 @@ public interface ZhihuDaily {
      * @return {@link Version}
      */
     @GET("version/ios/{version}")
-    Call<Version> getVersionOfIOS(@Path("version") String currentVersion);
+    ServiceCall<Version> getVersionOfIOS(@Path("version") String currentVersion);
 }

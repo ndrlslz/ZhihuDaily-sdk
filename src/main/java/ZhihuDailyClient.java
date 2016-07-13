@@ -1,7 +1,7 @@
 import api.ZhihuDaily;
-import com.google.gson.Gson;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import service.ServiceCallAdapterFactory;
 
 public final class ZhihuDailyClient {
     private static final String BASE_URL = "http://news-at.zhihu.com/api/4/";
@@ -26,6 +26,7 @@ public final class ZhihuDailyClient {
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(ServiceCallAdapterFactory.create())
                 .build()
                 .create(ZhihuDaily.class);
     }

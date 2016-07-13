@@ -20,7 +20,8 @@ public class ZhihuDailyUnitTest {
 
     @Test
     public void testGetStartImage() throws IOException {
-        StartImage startImage = zhihuDaily.getStartImage(ImageSize.SIZE_1080P).execute().body();
+        StartImage startImage = zhihuDaily.getStartImage(ImageSize.SIZE_1080P).execute();
+
         assertNotNull(startImage);
         assertNotNull(startImage.getImg());
         assertNotNull(startImage.getText());
@@ -29,8 +30,8 @@ public class ZhihuDailyUnitTest {
     @Test
     public void testGetVersionOfAndroid() throws IOException {
         final String currentVersion = "2.3.0";
+        Version version = zhihuDaily.getVersionOfAndroid(currentVersion).execute();
 
-        Version version = zhihuDaily.getVersionOfAndroid(currentVersion).execute().body();
         assertNotNull(version);
         assertNotNull(version.getLatest());
         assertNotNull(version.getStatus());
@@ -39,8 +40,8 @@ public class ZhihuDailyUnitTest {
     @Test
     public void testGetVersionOfIOS() throws IOException {
         final String currentVersion = "2.3.0";
+        Version version = zhihuDaily.getVersionOfIOS(currentVersion).execute();
 
-        Version version = zhihuDaily.getVersionOfIOS(currentVersion).execute().body();
         assertNotNull(version);
         assertNotNull(version.getStatus());
         assertNotNull(version.getLatest());
