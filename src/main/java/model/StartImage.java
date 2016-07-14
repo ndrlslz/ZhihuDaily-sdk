@@ -3,11 +3,13 @@ package model;
 /**
  * Startup interface image
  * <p>
- * Json Example:
+ * Rest API Example: "http://news-at.zhihu.com/api/4/start-image/1080*1776"
+ * <p>
+ * Json Response Example:
  * <p>
  * {
- *      text: "© Fido Dido",
- *      img: "http://p2.zhimg.com/10/7b/107bb4894b46d75a892da6fa80ef504a.jpg"
+ *      "text":"Jan Schulz",
+ *      "img":"https://pic3.zhimg.com/2585173a01d52b49d9714e2c50801d15.jpg"
  * }
  */
 public class StartImage {
