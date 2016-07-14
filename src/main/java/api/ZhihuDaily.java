@@ -1,6 +1,7 @@
 package api;
 
 import model.LatestNews;
+import model.News;
 import model.StartImage;
 import model.Version;
 import retrofit2.http.GET;
@@ -51,4 +52,13 @@ public interface ZhihuDaily {
      */
     @GET("news/latest")
     ServiceCall<LatestNews> getLatestNews();
+
+    /**
+     * Get news
+     *
+     * @param id news id
+     * @return {@link News}
+     */
+    @GET("news/{id}")
+    ServiceCall<News> getNews(@Path("id") int id);
 }

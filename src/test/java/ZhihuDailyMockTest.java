@@ -98,6 +98,29 @@ public class ZhihuDailyMockTest {
         assertTrue(latestNews.getTop_stories().size() > 0);
     }
 
+    @Test
+    public void testGetNews() throws IOException {
+        News response = new News();
+        response.setId(1);
+        response.setTitle("title");
+        response.setBody("body");
+        response.setType(0);
+        response.setImages(Arrays.asList("image1", "image2"));
+        response.setSection(new News.Section());
+        response.setRecommenders(Collections.singletonList(new News.Recommender()));
+
+        mockServerWith(response);
+
+        News news = zhihuDaily.getNews(1).execute();
+        assertNotNull(news);
+        assertEquals(news.getTitle(), response.getTitle());
+        assertEquals(news.getBody(), response.getBody());
+        assertEquals(news.getSection(), response.getSection());
+        assertEquals(news.getType(), response.getType());
+        assertEquals(news.getRecommenders(), response.getRecommenders());
+        assertEquals(news.getImages(), response.getImages());
+    }
+
     public static void mockServerWith(Object o) {
         server.enqueue(new MockResponse().setBody(gson.toJson(o)));
     }

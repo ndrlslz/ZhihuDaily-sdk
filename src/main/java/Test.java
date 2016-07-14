@@ -1,17 +1,15 @@
 import api.ZhihuDaily;
-import model.ImageSize;
-import model.LatestNews;
-import model.StartImage;
-import model.Version;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import model.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import service.ServiceCall;
 import service.ServiceCallback;
 
 import java.io.IOException;
 
 public class Test {
+    private static final Logger logger = LoggerFactory.getLogger(Test.class);
+
     public static void main(String[] args) throws IOException {
         ZhihuDaily zhihuDaily = ZhihuDailyClient.create();
 
@@ -42,5 +40,11 @@ public class Test {
 
         latestNews.getStories().forEach(System.out::println);
         latestNews.getTop_stories().forEach(System.out::println);
+
+
+        News news = zhihuDaily.getNews(latestNews.getTop_stories().get(0).getId()).execute();
+        System.out.println(news);
+
+        logger.debug(news.getTitle());
     }
 }
