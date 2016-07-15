@@ -121,6 +121,27 @@ public class ZhihuDailyMockTest {
         assertEquals(news.getImages(), response.getImages());
     }
 
+    @Test
+    public void testGetBeforeNews() throws IOException {
+        final String date = "20160712";
+        LatestNews response = new LatestNews();
+        Story story = new Story();
+        story.setId(1);
+        story.setType(1);
+        story.setTitle("title");
+        response.setStories(Collections.singletonList(story));
+        response.setDate(date);
+
+        mockServerWith(response);
+
+        LatestNews beforeNews = zhihuDaily.getBeforeNews(date).execute();
+
+        assertNotNull(beforeNews);
+        assertEquals(beforeNews.getDate(), response.getDate());
+        assertEquals(beforeNews.getStories(), response.getStories());
+
+    }
+
     public static void mockServerWith(Object o) {
         server.enqueue(new MockResponse().setBody(gson.toJson(o)));
     }

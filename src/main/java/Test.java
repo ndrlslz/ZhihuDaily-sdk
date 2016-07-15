@@ -45,6 +45,9 @@ public class Test {
         News news = zhihuDaily.getNews(latestNews.getTop_stories().get(0).getId()).execute();
         System.out.println(news);
 
-        logger.debug(news.getTitle());
+        logger.debug("--------------------");
+
+        LatestNews beforeNews = zhihuDaily.getBeforeNews("20140304").execute();
+        beforeNews.getStories().forEach(System.out::println);
     }
 }

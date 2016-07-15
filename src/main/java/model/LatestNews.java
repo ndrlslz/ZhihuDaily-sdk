@@ -33,6 +33,7 @@ import java.util.List;
  *      ]
  * }
  */
+//TODO Class name need to be changed.
 public class LatestNews {
 
     /**

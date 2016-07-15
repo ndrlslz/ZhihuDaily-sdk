@@ -70,4 +70,16 @@ public class ZhihuDailyUnitTest {
 
     }
 
+    @Test
+    public void testGetBeforeNews() throws IOException {
+        final String date = "20140606";
+        LatestNews beforeNews = zhihuDaily.getBeforeNews(date).execute();
+
+        assertNotNull(beforeNews);
+        assertNotNull(beforeNews.getStories());
+        assertTrue(beforeNews.getStories().size() > 0);
+        assertNotNull(beforeNews.getStories().get(0).getId());
+        assertNotNull(beforeNews.getStories().get(0).getTitle());
+    }
+
 }

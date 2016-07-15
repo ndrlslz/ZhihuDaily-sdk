@@ -61,4 +61,8 @@ public interface ZhihuDaily {
      */
     @GET("news/{id}")
     ServiceCall<News> getNews(@Path("id") int id);
+
+
+    @GET("news/before/{date}")
+    ServiceCall<LatestNews> getBeforeNews(@Path("date") String date);
 }
