@@ -3,7 +3,7 @@ package model;
 import java.util.List;
 
 /**
- * LatestNews news
+ * Daily news
  * <p>
  * Rest API Example: "http://news-at.zhihu.com/api/4/news/latest"
  * <p>
@@ -33,8 +33,7 @@ import java.util.List;
  *      ]
  * }
  */
-//TODO Class name need to be changed.
-public class LatestNews {
+public class DailyNews {
 
     /**
      * Date //TODO String maybe switch to Date type
@@ -110,7 +109,7 @@ public class LatestNews {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        LatestNews latest = (LatestNews) o;
+        DailyNews latest = (DailyNews) o;
 
         if (date != null ? !date.equals(latest.date) : latest.date != null) return false;
         if (stories != null ? !stories.equals(latest.stories) : latest.stories != null) return false;
@@ -128,7 +127,7 @@ public class LatestNews {
 
     @Override
     public String toString() {
-        return "LatestNews{" +
+        return "DailyNews{" +
                 "date='" + date + '\'' +
                 ", stories=" + stories +
                 ", top_stories=" + top_stories +

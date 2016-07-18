@@ -35,7 +35,7 @@ public class Test {
         Version iosVersion = zhihuDaily.getVersionOfIOS("2.5.0").execute();
         System.out.println(iosVersion);
 
-        LatestNews latestNews = zhihuDaily.getLatestNews().execute();
+        DailyNews latestNews = zhihuDaily.getLatestNews().execute();
         System.out.println(latestNews.getDate());
 
         latestNews.getStories().forEach(System.out::println);
@@ -47,7 +47,7 @@ public class Test {
 
         logger.debug("--------------------");
 
-        LatestNews beforeNews = zhihuDaily.getBeforeNews("20140304").execute();
+        DailyNews beforeNews = zhihuDaily.getBeforeNews("20140304").execute();
         beforeNews.getStories().forEach(System.out::println);
     }
 }

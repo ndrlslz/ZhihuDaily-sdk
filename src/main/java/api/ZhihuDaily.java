@@ -1,6 +1,6 @@
 package api;
 
-import model.LatestNews;
+import model.DailyNews;
 import model.News;
 import model.StartImage;
 import model.Version;
@@ -48,10 +48,10 @@ public interface ZhihuDaily {
     /**
      * Get latest news
      *
-     * @return {@link LatestNews}
+     * @return {@link DailyNews}
      */
     @GET("news/latest")
-    ServiceCall<LatestNews> getLatestNews();
+    ServiceCall<DailyNews> getLatestNews();
 
     /**
      * Get news
@@ -64,5 +64,5 @@ public interface ZhihuDaily {
 
 
     @GET("news/before/{date}")
-    ServiceCall<LatestNews> getBeforeNews(@Path("date") String date);
+    ServiceCall<DailyNews> getBeforeNews(@Path("date") String date);
 }

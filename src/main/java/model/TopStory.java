@@ -3,7 +3,7 @@ package model;
 /**
  * Top Story
  * <p>
- * Used by {@link LatestNews}
+ * Used by {@link DailyNews}
  * <p>
  * Json Example:
  * <p>

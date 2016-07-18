@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * ZhihuDaily Story
  * <p>
- * Used by {@link LatestNews}
+ * Used by {@link DailyNews}
  * <p>
  * Json Example:
  * <p>

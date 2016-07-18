@@ -46,7 +46,7 @@ public class ZhihuDailyUnitTest {
 
     @Test
     public void testGetLatestNews() throws IOException {
-        LatestNews latestNews = zhihuDaily.getLatestNews().execute();
+        DailyNews latestNews = zhihuDaily.getLatestNews().execute();
 
         assertNotNull(latestNews);
         assertNotNull(latestNews.getDate());
@@ -73,7 +73,7 @@ public class ZhihuDailyUnitTest {
     @Test
     public void testGetBeforeNews() throws IOException {
         final String date = "20140606";
-        LatestNews beforeNews = zhihuDaily.getBeforeNews(date).execute();
+        DailyNews beforeNews = zhihuDaily.getBeforeNews(date).execute();
 
         assertNotNull(beforeNews);
         assertNotNull(beforeNews.getStories());

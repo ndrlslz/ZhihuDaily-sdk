@@ -8,10 +8,10 @@ package model;
  * Json Response Example:
  * <p>
  * {
- *      "status": 1,
- *      "msg": "【更新内容】",
- *      "url":"http://zhstatic.zhihu.com/pkg/store/daily/zhihu-daily-zhihu-2.6.0(744)-release.apk",
- *      "latest": "2.2.0"
+ * "status": 1,
+ * "msg": "【更新内容】",
+ * "url":"http://zhstatic.zhihu.com/pkg/store/daily/zhihu-daily-zhihu-2.6.0(744)-release.apk",
+ * "latest": "2.2.0"
  * }
  */
 public class Version {
@@ -33,7 +33,7 @@ public class Version {
     private String url;
 
     /**
-     * LatestNews version
+     * Latest version
      */
     private String latest;
 
@@ -84,6 +84,7 @@ public class Version {
 
     /**
      * Set url
+     *
      * @param url url
      */
     public void setUrl(String url) {

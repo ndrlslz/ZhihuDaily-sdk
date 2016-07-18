@@ -83,14 +83,14 @@ public class ZhihuDailyMockTest {
 
     @Test
     public void testGetLatestNews() throws IOException {
-        LatestNews response = new LatestNews();
+        DailyNews response = new DailyNews();
         response.setDate("20160713");
         response.setStories(Collections.singletonList(new Story()));
         response.setTop_stories(Collections.singletonList(new TopStory()));
 
         mockServerWith(response);
 
-        LatestNews latestNews = zhihuDaily.getLatestNews().execute();
+        DailyNews latestNews = zhihuDaily.getLatestNews().execute();
         assertNotNull(latestNews);
         assertNotNull(latestNews.getStories());
         assertTrue(latestNews.getStories().size() > 0);
@@ -124,7 +124,7 @@ public class ZhihuDailyMockTest {
     @Test
     public void testGetBeforeNews() throws IOException {
         final String date = "20160712";
-        LatestNews response = new LatestNews();
+        DailyNews response = new DailyNews();
         Story story = new Story();
         story.setId(1);
         story.setType(1);
@@ -134,7 +134,7 @@ public class ZhihuDailyMockTest {
 
         mockServerWith(response);
 
-        LatestNews beforeNews = zhihuDaily.getBeforeNews(date).execute();
+        DailyNews beforeNews = zhihuDaily.getBeforeNews(date).execute();
 
         assertNotNull(beforeNews);
         assertEquals(beforeNews.getDate(), response.getDate());
