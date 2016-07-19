@@ -142,6 +142,25 @@ public class ZhihuDailyMockTest {
 
     }
 
+    @Test
+    public void testGetExtraInformation() throws IOException {
+        ExtraInformation response = new ExtraInformation();
+        response.setComments(100);
+        response.setLong_comments(20);
+        response.setPopularity(3);
+        response.setShort_comments(10);
+
+        mockServerWith(response);
+
+        ExtraInformation extraInformation = zhihuDaily.getExtraInformation(1).execute();
+        assertNotNull(extraInformation);
+        assertEquals(extraInformation.getShort_comments(), response.getShort_comments());
+        assertEquals(extraInformation.getPopularity(), response.getPopularity());
+        assertEquals(extraInformation.getLong_comments(), response.getLong_comments());
+        assertEquals(extraInformation.getComments(), response.getComments());
+
+    }
+
     public static void mockServerWith(Object o) {
         server.enqueue(new MockResponse().setBody(gson.toJson(o)));
     }

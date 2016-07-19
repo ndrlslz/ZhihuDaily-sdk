@@ -42,8 +42,8 @@ public class Test {
         latestNews.getStories().forEach(System.out::println);
         latestNews.getTop_stories().forEach(System.out::println);
 
-
-        News news = zhihuDaily.getNews(latestNews.getTop_stories().get(0).getId()).execute();
+        int id = latestNews.getTop_stories().get(0).getId();
+        News news = zhihuDaily.getNews(id).execute();
         System.out.println(news);
 
         logger.debug("--------------------");
@@ -55,5 +55,8 @@ public class Test {
         DailyNews beforeNews = zhihuDaily.getBeforeNews(beforeYesterday).execute();
         beforeNews.getStories().forEach(System.out::println);
 
+
+        ExtraInformation extraInformation = zhihuDaily.getExtraInformation(id).execute();
+        System.out.println(extraInformation);
     }
 }

@@ -1,9 +1,6 @@
 package api;
 
-import model.DailyNews;
-import model.News;
-import model.StartImage;
-import model.Version;
+import model.*;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import service.ServiceCall;
@@ -62,7 +59,21 @@ public interface ZhihuDaily {
     @GET("news/{id}")
     ServiceCall<News> getNews(@Path("id") int id);
 
-
+    /**
+     * Get before news by given data
+     *
+     * @param date date
+     * @return {@link DailyNews}
+     */
     @GET("news/before/{date}")
     ServiceCall<DailyNews> getBeforeNews(@Path("date") String date);
+
+    /**
+     * Get extra information of news
+     *
+     * @param id news id
+     * @return {@link ExtraInformation}
+     */
+    @GET("story-extra/{id}")
+    ServiceCall<ExtraInformation> getExtraInformation(@Path("id") int id);
 }

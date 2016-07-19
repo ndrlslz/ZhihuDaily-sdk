@@ -82,4 +82,16 @@ public class ZhihuDailyUnitTest {
         assertNotNull(beforeNews.getStories().get(0).getTitle());
     }
 
+    @Test
+    public void testGetExtraInformation() throws IOException {
+        final int id = zhihuDaily.getLatestNews().execute().getTop_stories().get(0).getId();
+        ExtraInformation extraInformation = zhihuDaily.getExtraInformation(id).execute();
+
+        assertNotNull(extraInformation);
+        assertNotNull(extraInformation.getComments());
+        assertNotNull(extraInformation.getLong_comments());
+        assertNotNull(extraInformation.getPopularity());
+        assertNotNull(extraInformation.getShort_comments());
+    }
+
 }
