@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import service.ServiceCall;
 import service.ServiceCallback;
+import utils.DateUtils;
 
 import java.io.IOException;
 
@@ -47,7 +48,12 @@ public class Test {
 
         logger.debug("--------------------");
 
-        DailyNews beforeNews = zhihuDaily.getBeforeNews("20140304").execute();
+        String now = DateUtils.getStringOfNow();
+        String yesterday = DateUtils.getDayBefore(now);
+        String beforeYesterday = DateUtils.getDayBefore(yesterday);
+
+        DailyNews beforeNews = zhihuDaily.getBeforeNews(beforeYesterday).execute();
         beforeNews.getStories().forEach(System.out::println);
+
     }
 }

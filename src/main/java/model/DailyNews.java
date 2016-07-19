@@ -36,7 +36,7 @@ import java.util.List;
 public class DailyNews {
 
     /**
-     * Date //TODO String maybe switch to Date type
+     * Date
      */
     private String date;
 
