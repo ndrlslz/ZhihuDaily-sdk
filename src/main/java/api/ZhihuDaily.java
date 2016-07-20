@@ -5,6 +5,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import service.ServiceCall;
 
+import java.util.List;
+
 
 /**
  * ZhihuDaily API
@@ -76,4 +78,8 @@ public interface ZhihuDaily {
      */
     @GET("story-extra/{id}")
     ServiceCall<ExtraInformation> getExtraInformation(@Path("id") int id);
+
+
+    @GET("story/{id}/long-comments")
+    ServiceCall<List<Comment>> getLongComments(@Path("id") int id);
 }

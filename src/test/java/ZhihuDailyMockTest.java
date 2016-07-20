@@ -10,8 +10,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import service.ServiceCallAdapterFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -159,6 +161,31 @@ public class ZhihuDailyMockTest {
         assertEquals(extraInformation.getLong_comments(), response.getLong_comments());
         assertEquals(extraInformation.getComments(), response.getComments());
 
+    }
+
+    @Test
+    public void testGetLongComments() throws IOException {
+        List<Comment> response = new ArrayList<>();
+        Comment comment = new Comment();
+        comment.setAuthor("test-author");
+        comment.setId(1);
+        comment.setAvatar("address");
+        comment.setLikes(0);
+        comment.setContent("test-content");
+        comment.setTime(0);
+        response.add(comment);
+
+        mockServerWith(response);
+
+        List<Comment> longComments = zhihuDaily.getLongComments(1).execute();
+        assertNotNull(longComments);
+        assertTrue(longComments.size() == 1);
+        assertEquals(longComments.get(0).getId(), comment.getId());
+        assertEquals(longComments.get(0).getLikes(), comment.getLikes());
+        assertEquals(longComments.get(0).getContent(), comment.getContent());
+        assertEquals(longComments.get(0).getAuthor(), comment.getAuthor());
+        assertEquals(longComments.get(0).getAvatar(), comment.getAvatar());
+        assertEquals(longComments.get(0).getTime(), comment.getTime());
     }
 
     public static void mockServerWith(Object o) {

@@ -7,6 +7,7 @@ import service.ServiceCallback;
 import utils.DateUtils;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Test {
     private static final Logger logger = LoggerFactory.getLogger(Test.class);
@@ -58,5 +59,11 @@ public class Test {
 
         ExtraInformation extraInformation = zhihuDaily.getExtraInformation(id).execute();
         System.out.println(extraInformation);
+
+
+        List<Comment> comments = zhihuDaily.getLongComments(8574873).execute();
+        comments.forEach(System.out::println);
+
+
     }
 }

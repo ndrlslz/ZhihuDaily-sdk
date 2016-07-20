@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -92,6 +93,20 @@ public class ZhihuDailyUnitTest {
         assertNotNull(extraInformation.getLong_comments());
         assertNotNull(extraInformation.getPopularity());
         assertNotNull(extraInformation.getShort_comments());
+    }
+
+    @Test
+    public void testGetLongComments() throws IOException {
+        final int id = 8574873;
+        List<Comment> comments = zhihuDaily.getLongComments(id).execute();
+
+        assertNotNull(comments);
+        assertTrue(comments.size() > 0);
+        assertNotNull(comments.get(0));
+        assertNotNull(comments.get(0).getId());
+        assertNotNull(comments.get(0).getAuthor());
+        assertNotNull(comments.get(0).getContent());
+        assertNotNull(comments.get(0).getLikes());
     }
 
 }
