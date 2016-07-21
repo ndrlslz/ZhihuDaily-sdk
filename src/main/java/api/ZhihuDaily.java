@@ -80,6 +80,21 @@ public interface ZhihuDaily {
     ServiceCall<ExtraInformation> getExtraInformation(@Path("id") int id);
 
 
+    /**
+     * Get long comments of news
+     *
+     * @param id news id
+     * @return list of {@link Comment}
+     */
     @GET("story/{id}/long-comments")
     ServiceCall<List<Comment>> getLongComments(@Path("id") int id);
+
+    /**
+     * Get short comments of news
+     *
+     * @param id news id
+     * @return list of {@link Comment}
+     */
+    @GET("story/{id}/short-comments")
+    ServiceCall<List<Comment>> getShortComments(@Path("id") int id);
 }

@@ -109,4 +109,18 @@ public class ZhihuDailyUnitTest {
         assertNotNull(comments.get(0).getLikes());
     }
 
+    @Test
+    public void testGetShortComments() throws IOException {
+        final int id = 8574873;
+
+        List<Comment> comments = zhihuDaily.getShortComments(id).execute();
+
+        assertNotNull(comments);
+        assertTrue(comments.size() > 0);
+        assertNotNull(comments.get(0));
+        assertNotNull(comments.get(0).getId());
+        assertNotNull(comments.get(0).getAuthor());
+        assertNotNull(comments.get(0).getContent());
+        assertNotNull(comments.get(0).getLikes());
+    }
 }

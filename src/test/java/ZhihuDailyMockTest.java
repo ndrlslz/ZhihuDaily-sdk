@@ -188,6 +188,31 @@ public class ZhihuDailyMockTest {
         assertEquals(longComments.get(0).getTime(), comment.getTime());
     }
 
+    @Test
+    public void testGetShortComments() throws IOException {
+        List<Comment> response = new ArrayList<>();
+        Comment comment = new Comment();
+        comment.setAuthor("test-author");
+        comment.setId(1);
+        comment.setAvatar("address");
+        comment.setLikes(0);
+        comment.setContent("test-content");
+        comment.setTime(0);
+        response.add(comment);
+
+        mockServerWith(response);
+
+        List<Comment> shortComments = zhihuDaily.getShortComments(1).execute();
+        assertNotNull(shortComments);
+        assertTrue(shortComments.size() == 1);
+        assertEquals(shortComments.get(0).getId(), comment.getId());
+        assertEquals(shortComments.get(0).getLikes(), comment.getLikes());
+        assertEquals(shortComments.get(0).getContent(), comment.getContent());
+        assertEquals(shortComments.get(0).getAuthor(), comment.getAuthor());
+        assertEquals(shortComments.get(0).getAvatar(), comment.getAvatar());
+        assertEquals(shortComments.get(0).getTime(), comment.getTime());
+    }
+
     public static void mockServerWith(Object o) {
         server.enqueue(new MockResponse().setBody(gson.toJson(o)));
     }

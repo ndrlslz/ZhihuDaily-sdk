@@ -64,6 +64,9 @@ public class Test {
         List<Comment> comments = zhihuDaily.getLongComments(8574873).execute();
         comments.forEach(System.out::println);
 
+        List<Comment> shortComments = zhihuDaily.getShortComments(id).execute();
+        shortComments.forEach(System.out::println);
+
 
     }
 }
