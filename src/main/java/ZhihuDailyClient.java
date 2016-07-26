@@ -2,6 +2,7 @@ import api.ZhihuDaily;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import deserializer.DateTypeAdapter;
 import model.Comment;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -9,6 +10,7 @@ import deserializer.CommentsDeserializer;
 import service.ServiceCallAdapterFactory;
 
 import java.lang.reflect.Type;
+import java.util.Date;
 import java.util.List;
 
 public final class ZhihuDailyClient {
@@ -20,8 +22,10 @@ public final class ZhihuDailyClient {
     static {
         gson = new GsonBuilder()
                 .registerTypeAdapter(COMMENTS, new CommentsDeserializer())
+                .registerTypeAdapter(Date.class, new DateTypeAdapter())
                 .create();
     }
+
     private ZhihuDailyClient() {
 
     }

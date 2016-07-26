@@ -10,10 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import service.ServiceCallAdapterFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -172,7 +169,7 @@ public class ZhihuDailyMockTest {
         comment.setAvatar("address");
         comment.setLikes(0);
         comment.setContent("test-content");
-        comment.setTime(0);
+        comment.setTime(new Date());
         response.add(comment);
 
         mockServerWith(response);
@@ -197,7 +194,7 @@ public class ZhihuDailyMockTest {
         comment.setAvatar("address");
         comment.setLikes(0);
         comment.setContent("test-content");
-        comment.setTime(0);
+        comment.setTime(new Date());
         response.add(comment);
 
         mockServerWith(response);

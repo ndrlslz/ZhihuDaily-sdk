@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Date;
+
 /**
  * Comment of news.
  * <p>
@@ -37,9 +39,8 @@ public class Comment {
 
     /**
      * Comment time
-     * //TODO switch to Date type.
      */
-    private int time;
+    private Date time;
 
     /**
      * Avatar address of author
@@ -123,7 +124,7 @@ public class Comment {
      *
      * @return time
      */
-    public int getTime() {
+    public Date getTime() {
         return time;
     }
 
@@ -132,7 +133,7 @@ public class Comment {
      *
      * @param time time
      */
-    public void setTime(int time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 
@@ -163,9 +164,9 @@ public class Comment {
 
         if (id != comment.id) return false;
         if (likes != comment.likes) return false;
-        if (time != comment.time) return false;
         if (author != null ? !author.equals(comment.author) : comment.author != null) return false;
         if (content != null ? !content.equals(comment.content) : comment.content != null) return false;
+        if (time != null ? !time.equals(comment.time) : comment.time != null) return false;
         return !(avatar != null ? !avatar.equals(comment.avatar) : comment.avatar != null);
 
     }
@@ -176,7 +177,7 @@ public class Comment {
         result = 31 * result + id;
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + likes;
-        result = 31 * result + time;
+        result = 31 * result + (time != null ? time.hashCode() : 0);
         result = 31 * result + (avatar != null ? avatar.hashCode() : 0);
         return result;
     }
