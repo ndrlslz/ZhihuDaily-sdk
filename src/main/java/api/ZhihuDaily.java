@@ -97,4 +97,13 @@ public interface ZhihuDaily {
      */
     @GET("story/{id}/short-comments")
     ServiceCall<List<Comment>> getShortComments(@Path("id") int id);
+
+    /**
+     * Get themes
+     *
+     * @return {@link Themes}
+     */
+    @GET("themes")
+    ServiceCall<Themes> getThemes();
+
 }

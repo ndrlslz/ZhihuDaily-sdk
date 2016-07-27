@@ -182,7 +182,6 @@ public class ZhihuDailyMockTest {
         assertEquals(longComments.get(0).getContent(), comment.getContent());
         assertEquals(longComments.get(0).getAuthor(), comment.getAuthor());
         assertEquals(longComments.get(0).getAvatar(), comment.getAvatar());
-        assertEquals(longComments.get(0).getTime(), comment.getTime());
     }
 
     @Test
@@ -207,7 +206,31 @@ public class ZhihuDailyMockTest {
         assertEquals(shortComments.get(0).getContent(), comment.getContent());
         assertEquals(shortComments.get(0).getAuthor(), comment.getAuthor());
         assertEquals(shortComments.get(0).getAvatar(), comment.getAvatar());
-        assertEquals(shortComments.get(0).getTime(), comment.getTime());
+    }
+
+    @Test
+    public void testGetThemes() throws IOException {
+        Themes.ThemeSummary themeSummary = new Themes.ThemeSummary();
+        themeSummary.setColor(15007);
+        themeSummary.setDescription("test-description");
+        themeSummary.setId(1);
+        themeSummary.setName("test-name");
+        themeSummary.setThumbnail("test-thumbnail");
+
+        Themes response = new Themes();
+        response.setLimit(1000);
+        response.setOthers(Collections.singletonList(themeSummary));
+
+        mockServerWith(response);
+
+        Themes themes = zhihuDaily.getThemes().execute();
+        assertNotNull(themes);
+        assertNotNull(themes.getLimit());
+        assertTrue(themes.getOthers().size() == 1);
+        assertEquals(themes.getOthers().get(0).getName(), themeSummary.getName());
+        assertEquals(themes.getOthers().get(0).getId(), themeSummary.getId());
+        assertEquals(themes.getOthers().get(0).getDescription(), themeSummary.getDescription());
+
     }
 
     public static void mockServerWith(Object o) {

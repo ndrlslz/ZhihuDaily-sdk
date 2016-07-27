@@ -68,5 +68,10 @@ public class Test {
         shortComments.forEach(System.out::println);
 
 
+        Themes themes = zhihuDaily.getThemes().execute();
+        System.out.println(themes.getLimit());
+        System.out.println(themes.getSubscribed());
+        themes.getOthers().forEach(System.out::println);
+
     }
 }
