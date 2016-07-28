@@ -135,4 +135,17 @@ public class ZhihuDailyUnitTest {
         assertNotNull(themes.getOthers().get(0).getId());
         assertNotNull(themes.getOthers().get(0).getName());
     }
+
+    @Test
+    public void testGetTheme() throws IOException {
+        final int id = zhihuDaily.getThemes().execute().getOthers().get(0).getId();
+        Theme theme = zhihuDaily.getTheme(id).execute();
+
+        assertNotNull(theme);
+        assertNotNull(theme.getName());
+        assertNotNull(theme.getEditors());
+        assertTrue(theme.getEditors().size() > 0);
+        assertNotNull(theme.getStories());
+        assertTrue(theme.getStories().size() > 0);
+    }
 }

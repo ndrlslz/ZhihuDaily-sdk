@@ -79,7 +79,6 @@ public interface ZhihuDaily {
     @GET("story-extra/{id}")
     ServiceCall<ExtraInformation> getExtraInformation(@Path("id") int id);
 
-
     /**
      * Get long comments of news
      *
@@ -105,5 +104,14 @@ public interface ZhihuDaily {
      */
     @GET("themes")
     ServiceCall<Themes> getThemes();
+
+    /**
+     * Get theme
+     *
+     * @param id theme id
+     * @return {@link Theme}
+     */
+    @GET("theme/{id}")
+    ServiceCall<Theme> getTheme(@Path("id") int id);
 
 }

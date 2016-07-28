@@ -233,6 +233,26 @@ public class ZhihuDailyMockTest {
 
     }
 
+    @Test
+    public void testGetTheme() throws IOException {
+        Theme response = new Theme();
+        response.setName("test-name");
+        response.setStories(Collections.singletonList(new Story()));
+        response.setDescription("test-description");
+        response.setEditors(Collections.singletonList(new Editor()));
+        response.setImage("test-image");
+
+        mockServerWith(response);
+
+        Theme theme = zhihuDaily.getTheme(1).execute();
+
+        assertNotNull(theme);
+        assertEquals(theme.getName(), response.getName());
+        assertEquals(theme.getDescription(), response.getDescription());
+        assertEquals(theme.getEditors(), response.getEditors());
+        assertEquals(theme.getStories(), response.getStories());
+    }
+
     public static void mockServerWith(Object o) {
         server.enqueue(new MockResponse().setBody(gson.toJson(o)));
     }

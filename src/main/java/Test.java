@@ -44,7 +44,9 @@ public class Test {
         latestNews.getTop_stories().forEach(System.out::println);
 
         int id = latestNews.getTop_stories().get(0).getId();
-        News news = zhihuDaily.getNews(id).execute();
+        News news = zhihuDaily.getNews(4772126).execute();
+
+        logger.debug("=====================");
         System.out.println(news);
 
         logger.debug("--------------------");
@@ -73,5 +75,10 @@ public class Test {
         System.out.println(themes.getSubscribed());
         themes.getOthers().forEach(System.out::println);
 
+        System.out.println("%%%%%%%%%");
+
+        Theme theme = zhihuDaily.getTheme(themes.getOthers().get(0).getId()).execute();
+        theme.getEditors().forEach(System.out::println);
+        theme.getStories().forEach(System.out::println);
     }
 }
