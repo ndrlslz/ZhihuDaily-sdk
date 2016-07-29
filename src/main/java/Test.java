@@ -80,5 +80,8 @@ public class Test {
         Theme theme = zhihuDaily.getTheme(themes.getOthers().get(0).getId()).execute();
         theme.getEditors().forEach(System.out::println);
         theme.getStories().forEach(System.out::println);
+
+        HotNews hotNews = zhihuDaily.getHotNews().execute();
+        hotNews.getRecent().forEach(System.out::println);
     }
 }

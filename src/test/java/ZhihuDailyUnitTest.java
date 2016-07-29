@@ -148,4 +148,18 @@ public class ZhihuDailyUnitTest {
         assertNotNull(theme.getStories());
         assertTrue(theme.getStories().size() > 0);
     }
+
+    @Test
+    public void testGetHotNews() throws IOException {
+        HotNews hotNews = zhihuDaily.getHotNews().execute();
+
+        assertNotNull(hotNews);
+        assertNotNull(hotNews.getRecent());
+        assertTrue(hotNews.getRecent().size() > 0);
+
+        HotNews.HotNewsInfo hotNewsInfo = hotNews.getRecent().get(0);
+        assertNotNull(hotNewsInfo.getNews_id());
+        assertNotNull(hotNewsInfo.getUrl());
+        assertNotNull(hotNewsInfo.getTitle());
+    }
 }

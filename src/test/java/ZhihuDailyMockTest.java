@@ -253,6 +253,29 @@ public class ZhihuDailyMockTest {
         assertEquals(theme.getStories(), response.getStories());
     }
 
+    @Test
+    public void testGetHotNews() throws IOException {
+        HotNews response = new HotNews();
+        HotNews.HotNewsInfo hotNewsInfo = new HotNews.HotNewsInfo();
+        hotNewsInfo.setThumbnail("test-thumbnail");
+        hotNewsInfo.setNews_id(1);
+        hotNewsInfo.setTitle("test-title");
+        hotNewsInfo.setUrl("test-url");
+        response.setRecent(Collections.singletonList(hotNewsInfo));
+
+        mockServerWith(response);
+
+        HotNews hotNews = zhihuDaily.getHotNews().execute();
+        assertNotNull(hotNews);
+        assertTrue(hotNews.getRecent().size() == 1);
+        HotNews.HotNewsInfo expected = hotNews.getRecent().get(0);
+        assertEquals(expected.getTitle(), hotNewsInfo.getTitle());
+        assertEquals(expected.getUrl(), hotNewsInfo.getUrl());
+        assertEquals(expected.getNews_id(), hotNewsInfo.getNews_id());
+        assertEquals(expected.getThumbnail(), hotNewsInfo.getThumbnail());
+
+    }
+
     public static void mockServerWith(Object o) {
         server.enqueue(new MockResponse().setBody(gson.toJson(o)));
     }

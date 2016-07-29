@@ -114,4 +114,11 @@ public interface ZhihuDaily {
     @GET("theme/{id}")
     ServiceCall<Theme> getTheme(@Path("id") int id);
 
+    /**
+     * Get hot news
+     *
+     * @return {@link HotNews}
+     */
+    @GET("news/hot")
+    ServiceCall<HotNews> getHotNews();
 }
