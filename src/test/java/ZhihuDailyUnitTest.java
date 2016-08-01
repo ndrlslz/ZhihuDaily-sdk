@@ -26,7 +26,6 @@ public class ZhihuDailyUnitTest {
 
         assertNotNull(startImage);
         assertNotNull(startImage.toString());
-        assertNotNull(startImage.hashCode());
         assertNotNull(startImage.getImg());
         assertNotNull(startImage.getText());
     }
@@ -38,7 +37,6 @@ public class ZhihuDailyUnitTest {
 
         assertNotNull(version);
         assertNotNull(version.toString());
-        assertNotNull(version.hashCode());
         assertNotNull(version.getLatest());
         assertNotNull(version.getStatus());
     }
@@ -50,7 +48,6 @@ public class ZhihuDailyUnitTest {
 
         assertNotNull(version);
         assertNotNull(version.toString());
-        assertNotNull(version.hashCode());
         assertNotNull(version.getStatus());
         assertNotNull(version.getLatest());
     }
@@ -61,7 +58,6 @@ public class ZhihuDailyUnitTest {
 
         assertNotNull(latestNews);
         assertNotNull(latestNews.toString());
-        assertNotNull(latestNews.hashCode());
         assertNotNull(latestNews.getDate());
         assertNotNull(latestNews.getStories());
         assertTrue(latestNews.getStories().size() > 0);
@@ -78,7 +74,6 @@ public class ZhihuDailyUnitTest {
 
         assertNotNull(news);
         assertNotNull(news.toString());
-        assertNotNull(news.hashCode());
         assertNotNull(news.getId());
         assertNotNull(news.getTitle());
         assertNotNull(news.getBody());
@@ -92,7 +87,6 @@ public class ZhihuDailyUnitTest {
 
         assertNotNull(beforeNews);
         assertNotNull(beforeNews.toString());
-        assertNotNull(beforeNews.hashCode());
         assertNotNull(beforeNews.getStories());
         assertTrue(beforeNews.getStories().size() > 0);
         assertNotNull(beforeNews.getStories().get(0).getId());
@@ -106,7 +100,6 @@ public class ZhihuDailyUnitTest {
 
         assertNotNull(extraInformation);
         assertNotNull(extraInformation.toString());
-        assertNotNull(extraInformation.hashCode());
         assertNotNull(extraInformation.getComments());
         assertNotNull(extraInformation.getLong_comments());
         assertNotNull(extraInformation.getPopularity());
@@ -120,13 +113,13 @@ public class ZhihuDailyUnitTest {
 
         assertNotNull(comments);
         assertNotNull(comments.toString());
-        assertNotNull(comments.hashCode());
         assertTrue(comments.size() > 0);
         assertNotNull(comments.get(0));
         assertNotNull(comments.get(0).getId());
         assertNotNull(comments.get(0).getAuthor());
         assertNotNull(comments.get(0).getContent());
         assertNotNull(comments.get(0).getLikes());
+        assertNotNull(comments.get(0).getTime());
     }
 
     @Test
@@ -137,7 +130,6 @@ public class ZhihuDailyUnitTest {
 
         assertNotNull(comments);
         assertNotNull(comments.toString());
-        assertNotNull(comments.hashCode());
         assertTrue(comments.size() > 0);
         assertNotNull(comments.get(0));
         assertNotNull(comments.get(0).getId());
@@ -152,7 +144,6 @@ public class ZhihuDailyUnitTest {
 
         assertNotNull(themes);
         assertNotNull(themes.toString());
-        assertNotNull(themes.hashCode());
         assertNotNull(themes.getOthers());
         assertNotNull(themes.getLimit());
         assertTrue(themes.getOthers().size() > 0);
@@ -167,7 +158,6 @@ public class ZhihuDailyUnitTest {
 
         assertNotNull(theme);
         assertNotNull(theme.toString());
-        assertNotNull(theme.hashCode());
         assertNotNull(theme.getName());
         assertNotNull(theme.getEditors());
         assertTrue(theme.getEditors().size() > 0);
@@ -181,7 +171,6 @@ public class ZhihuDailyUnitTest {
 
         assertNotNull(hotNews);
         assertNotNull(hotNews.toString());
-        assertNotNull(hotNews.hashCode());
         assertNotNull(hotNews.getRecent());
         assertTrue(hotNews.getRecent().size() > 0);
 
@@ -198,7 +187,6 @@ public class ZhihuDailyUnitTest {
 
         assertNotNull(recommenders);
         assertNotNull(recommenders.toString());
-        assertNotNull(recommenders.hashCode());
         assertNotNull(recommenders.getEditors());
         assertNotNull(recommenders.getEditors().get(0).getId());
         assertNotNull(recommenders.getEditors().get(0).getName());

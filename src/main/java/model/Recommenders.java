@@ -95,27 +95,6 @@ public class Recommenders {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Recommenders that = (Recommenders) o;
-
-        if (item_count != that.item_count) return false;
-        if (items != null ? !items.equals(that.items) : that.items != null) return false;
-        return !(editors != null ? !editors.equals(that.editors) : that.editors != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = item_count;
-        result = 31 * result + (items != null ? items.hashCode() : 0);
-        result = 31 * result + (editors != null ? editors.hashCode() : 0);
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "Recommenders{" +
                 "item_count=" + item_count +

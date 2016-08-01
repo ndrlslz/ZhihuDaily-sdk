@@ -50,7 +50,6 @@ public class ZhihuDailyMockTest {
 
         StartImage startImage = zhihuDaily.getStartImage(ImageSize.SIZE_1080P).execute();
         assertNotNull(startImage);
-        assertEquals(response, startImage);
         assertEquals(startImage.getImg(), response.getImg());
         assertEquals(startImage.getText(), response.getText());
     }
@@ -67,7 +66,6 @@ public class ZhihuDailyMockTest {
 
         Version version = zhihuDaily.getVersionOfAndroid("2.3.0").execute();
         assertNotNull(version);
-        assertEquals(response, version);
         assertEquals(version.getLatest(), response.getLatest());
         assertEquals(version.getStatus(), response.getStatus());
         assertEquals(version.getMsg(), response.getMsg());
@@ -86,7 +84,6 @@ public class ZhihuDailyMockTest {
 
         Version version = zhihuDaily.getVersionOfIOS("2.3.0").execute();
         assertNotNull(version);
-        assertEquals(version, response);
         assertEquals(version.getLatest(), response.getLatest());
         assertEquals(version.getStatus(), response.getStatus());
         assertEquals(version.getMsg(), response.getMsg());
@@ -110,7 +107,6 @@ public class ZhihuDailyMockTest {
 
         DailyNews latestNews = zhihuDaily.getLatestNews().execute();
         assertNotNull(latestNews);
-        assertEquals(latestNews, response);
         assertNotNull(latestNews.getStories());
         assertTrue(latestNews.getStories().size() > 0);
         assertNotNull(latestNews.getTop_stories());
@@ -149,19 +145,16 @@ public class ZhihuDailyMockTest {
 
         News news = zhihuDaily.getNews(1).execute();
         assertNotNull(news);
-        assertEquals(news, response);
         assertEquals(news.getTitle(), response.getTitle());
         assertEquals(news.getBody(), response.getBody());
-        assertEquals(news.getSection(), response.getSection());
         assertEquals(news.getType(), response.getType());
-        assertEquals(news.getRecommenders(), response.getRecommenders());
-        assertEquals(news.getImages(), response.getImages());
         assertEquals(news.getImage(), response.getImage());
         assertEquals(news.getGa_prefix(), response.getGa_prefix());
         assertEquals(news.getImage_source(), response.getImage_source());
         assertEquals(news.getShare_url(), response.getShare_url());
         assertNotNull(news.getJs());
         assertNotNull(news.getCss());
+        assertNotNull(news.getImages());
         assertEquals(news.getSection().getId(), section.getId());
         assertEquals(news.getSection().getName(), section.getName());
         assertEquals(news.getSection().getThumbnail(), section.getThumbnail());
@@ -186,7 +179,6 @@ public class ZhihuDailyMockTest {
         DailyNews beforeNews = zhihuDaily.getBeforeNews(date).execute();
 
         assertNotNull(beforeNews);
-        assertEquals(beforeNews, response);
         assertEquals(beforeNews.getDate(), response.getDate());
         Story expected = beforeNews.getStories().get(0);
         assertEquals(expected.getId(), story.getId());
@@ -208,7 +200,6 @@ public class ZhihuDailyMockTest {
 
         ExtraInformation extraInformation = zhihuDaily.getExtraInformation(1).execute();
         assertNotNull(extraInformation);
-        assertEquals(extraInformation, response);
         assertEquals(extraInformation.getShort_comments(), response.getShort_comments());
         assertEquals(extraInformation.getPopularity(), response.getPopularity());
         assertEquals(extraInformation.getLong_comments(), response.getLong_comments());
@@ -234,7 +225,6 @@ public class ZhihuDailyMockTest {
 
         List<Comment> longComments = zhihuDaily.getLongComments(1).execute();
         assertNotNull(longComments);
-        assertEquals(longComments, response);
         assertTrue(longComments.size() == 1);
         assertEquals(longComments.get(0).getId(), comment.getId());
         assertEquals(longComments.get(0).getLikes(), comment.getLikes());
@@ -260,7 +250,6 @@ public class ZhihuDailyMockTest {
 
         List<Comment> shortComments = zhihuDaily.getShortComments(1).execute();
         assertNotNull(shortComments);
-        assertEquals(shortComments, response);
         assertTrue(shortComments.size() == 1);
         assertEquals(shortComments.get(0).getId(), comment.getId());
         assertEquals(shortComments.get(0).getLikes(), comment.getLikes());
@@ -288,7 +277,6 @@ public class ZhihuDailyMockTest {
 
         Themes themes = zhihuDaily.getThemes().execute();
         assertNotNull(themes);
-        assertEquals(themes, response);
         assertNotNull(themes.getLimit());
         assertNotNull(themes.getSubscribed());
         assertTrue(themes.getOthers().size() == 1);
@@ -318,11 +306,8 @@ public class ZhihuDailyMockTest {
         Theme theme = zhihuDaily.getTheme(1).execute();
 
         assertNotNull(theme);
-        assertEquals(theme, response);
         assertEquals(theme.getName(), response.getName());
         assertEquals(theme.getDescription(), response.getDescription());
-        assertEquals(theme.getEditors(), response.getEditors());
-        assertEquals(theme.getStories(), response.getStories());
         assertEquals(theme.getColor(), response.getColor());
         assertEquals(theme.getBackground(), response.getBackground());
         assertEquals(theme.getImage(), response.getImage());
@@ -343,7 +328,6 @@ public class ZhihuDailyMockTest {
 
         HotNews hotNews = zhihuDaily.getHotNews().execute();
         assertNotNull(hotNews);
-        assertEquals(hotNews, response);
         assertTrue(hotNews.getRecent().size() == 1);
         HotNews.HotNewsInfo expected = hotNews.getRecent().get(0);
         assertEquals(expected.getTitle(), hotNewsInfo.getTitle());
@@ -370,9 +354,9 @@ public class ZhihuDailyMockTest {
 
         Recommenders recommenders = zhihuDaily.getRecommenders(1).execute();
         assertNotNull(recommenders);
-        assertEquals(recommenders, response);
         assertTrue(recommenders.getEditors().size() == 1);
         assertEquals(recommenders.getItem_count(), response.getItem_count());
+        assertEquals(recommenders.getItems(), response.getItems());
         assertNotNull(recommenders.getItem_count());
         Editor expected = recommenders.getEditors().get(0);
         assertEquals(expected.getName(), editor.getName());

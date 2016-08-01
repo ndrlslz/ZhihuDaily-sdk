@@ -132,31 +132,6 @@ public class Editor {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Editor editor = (Editor) o;
-
-        if (id != editor.id) return false;
-        if (url != null ? !url.equals(editor.url) : editor.url != null) return false;
-        if (bio != null ? !bio.equals(editor.bio) : editor.bio != null) return false;
-        if (avatar != null ? !avatar.equals(editor.avatar) : editor.avatar != null) return false;
-        return !(name != null ? !name.equals(editor.name) : editor.name != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = url != null ? url.hashCode() : 0;
-        result = 31 * result + (bio != null ? bio.hashCode() : 0);
-        result = 31 * result + id;
-        result = 31 * result + (avatar != null ? avatar.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "Editor{" +
                 "url='" + url + '\'' +

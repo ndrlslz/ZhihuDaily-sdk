@@ -222,31 +222,6 @@ public class Themes {
         }
 
         @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            ThemeSummary that = (ThemeSummary) o;
-
-            if (color != that.color) return false;
-            if (id != that.id) return false;
-            if (thumbnail != null ? !thumbnail.equals(that.thumbnail) : that.thumbnail != null) return false;
-            if (description != null ? !description.equals(that.description) : that.description != null) return false;
-            return !(name != null ? !name.equals(that.name) : that.name != null);
-
-        }
-
-        @Override
-        public int hashCode() {
-            int result = color;
-            result = 31 * result + (thumbnail != null ? thumbnail.hashCode() : 0);
-            result = 31 * result + (description != null ? description.hashCode() : 0);
-            result = 31 * result + id;
-            result = 31 * result + (name != null ? name.hashCode() : 0);
-            return result;
-        }
-
-        @Override
         public String toString() {
             return "ThemeSummary{" +
                     "color=" + color +
@@ -257,27 +232,6 @@ public class Themes {
                     '}';
         }
 
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Themes themes = (Themes) o;
-
-        if (limit != themes.limit) return false;
-        if (subscribed != null ? !subscribed.equals(themes.subscribed) : themes.subscribed != null) return false;
-        return !(others != null ? !others.equals(themes.others) : themes.others != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = limit;
-        result = 31 * result + (subscribed != null ? subscribed.hashCode() : 0);
-        result = 31 * result + (others != null ? others.hashCode() : 0);
-        return result;
     }
 
     @Override
