@@ -31,19 +31,23 @@ public final class ZhihuDailyClient {
     }
 
     public static ZhihuDaily create() {
+        return create(BASE_URL);
+    }
+
+    public static ZhihuDaily create(String baseUrl) {
         if (zhihuDaily == null) {
             synchronized (ZhihuDailyClient.class) {
                 if (zhihuDaily == null) {
-                    zhihuDaily = createZhihuDaily();
+                    zhihuDaily = createZhihuDaily(baseUrl);
                 }
             }
         }
         return zhihuDaily;
     }
 
-    private static ZhihuDaily createZhihuDaily() {
+    private static ZhihuDaily createZhihuDaily(String baseUrl) {
         return new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(ServiceCallAdapterFactory.create())
                 .build()
