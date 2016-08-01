@@ -1,5 +1,9 @@
 import api.ZhihuDaily;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import deserializer.CommentsDeserializer;
+import deserializer.DateTypeAdapter;
 import model.*;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -10,6 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import service.ServiceCallAdapterFactory;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
@@ -17,21 +22,22 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class ZhihuDailyMockTest {
-    private static Gson gson = new Gson();
+    private static Gson gson;
     private static MockWebServer server = new MockWebServer();
     private static ZhihuDaily zhihuDaily;
+    private static final Type COMMENTS = new TypeToken<List<Comment>>() {
+    }.getType();
 
     static {
-        zhihuDaily = new Retrofit.Builder()
-                .baseUrl(server.url("/").toString())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(ServiceCallAdapterFactory.create())
-                .build()
-                .create(ZhihuDaily.class);
+        gson = new GsonBuilder()
+                .registerTypeAdapter(COMMENTS, new CommentsDeserializer())
+                .registerTypeAdapter(Date.class, new DateTypeAdapter())
+                .create();
     }
 
     @Before
     public void setUp() throws IOException {
+        zhihuDaily = ZhihuDailyClient.create(server.url("/").toString());
     }
 
     @Test
@@ -54,6 +60,7 @@ public class ZhihuDailyMockTest {
         response.setLatest("2.6.0");
         response.setStatus(1);
         response.setMsg("test-msg");
+        response.setUrl("test-url");
 
         mockServerWith(response);
 
@@ -62,6 +69,7 @@ public class ZhihuDailyMockTest {
         assertEquals(version.getLatest(), response.getLatest());
         assertEquals(version.getStatus(), response.getStatus());
         assertEquals(version.getMsg(), response.getMsg());
+        assertEquals(version.getUrl(), response.getUrl());
     }
 
     @Test
@@ -70,6 +78,7 @@ public class ZhihuDailyMockTest {
         response.setLatest("2.6.0");
         response.setStatus(1);
         response.setMsg("test-msg");
+        response.setUrl("test-url");
 
         mockServerWith(response);
 
@@ -78,6 +87,7 @@ public class ZhihuDailyMockTest {
         assertEquals(version.getLatest(), response.getLatest());
         assertEquals(version.getStatus(), response.getStatus());
         assertEquals(version.getMsg(), response.getMsg());
+        assertEquals(version.getUrl(), response.getUrl());
     }
 
     @Test
@@ -85,7 +95,13 @@ public class ZhihuDailyMockTest {
         DailyNews response = new DailyNews();
         response.setDate("20160713");
         response.setStories(Collections.singletonList(new Story()));
-        response.setTop_stories(Collections.singletonList(new TopStory()));
+        TopStory topStory = new TopStory();
+        topStory.setId(1);
+        topStory.setGa_prefix("test-ga");
+        topStory.setImage("test-image");
+        topStory.setTitle("test-title");
+        topStory.setType(1);
+        response.setTop_stories(Collections.singletonList(topStory));
 
         mockServerWith(response);
 
@@ -95,6 +111,12 @@ public class ZhihuDailyMockTest {
         assertTrue(latestNews.getStories().size() > 0);
         assertNotNull(latestNews.getTop_stories());
         assertTrue(latestNews.getTop_stories().size() > 0);
+        assertNotNull(latestNews.getTop_stories().get(0).getId());
+        assertNotNull(latestNews.getTop_stories().get(0).getTitle());
+        assertNotNull(latestNews.getTop_stories().get(0).getGa_prefix());
+        assertNotNull(latestNews.getTop_stories().get(0).getImage());
+        assertNotNull(latestNews.getTop_stories().get(0).getType());
+
     }
 
     @Test
@@ -105,7 +127,18 @@ public class ZhihuDailyMockTest {
         response.setBody("body");
         response.setType(0);
         response.setImages(Arrays.asList("image1", "image2"));
-        response.setSection(new News.Section());
+        response.setRecommenders(Collections.singletonList(new News.Recommender()));
+        response.setImage("test-image");
+        response.setGa_prefix("test-ga");
+        response.setImage_source("test-image-source");
+        response.setShare_url("test-url");
+        response.setJs(Collections.singletonList(""));
+        response.setCss(Collections.singletonList(""));
+        News.Section section = new News.Section();
+        section.setId(1);
+        section.setName("test-name");
+        section.setThumbnail("test-thumbnail");
+        response.setSection(section);
         response.setRecommenders(Collections.singletonList(new News.Recommender()));
 
         mockServerWith(response);
@@ -114,10 +147,18 @@ public class ZhihuDailyMockTest {
         assertNotNull(news);
         assertEquals(news.getTitle(), response.getTitle());
         assertEquals(news.getBody(), response.getBody());
-        assertEquals(news.getSection(), response.getSection());
         assertEquals(news.getType(), response.getType());
-        assertEquals(news.getRecommenders(), response.getRecommenders());
-        assertEquals(news.getImages(), response.getImages());
+        assertEquals(news.getImage(), response.getImage());
+        assertEquals(news.getGa_prefix(), response.getGa_prefix());
+        assertEquals(news.getImage_source(), response.getImage_source());
+        assertEquals(news.getShare_url(), response.getShare_url());
+        assertNotNull(news.getJs());
+        assertNotNull(news.getCss());
+        assertNotNull(news.getImages());
+        assertEquals(news.getSection().getId(), section.getId());
+        assertEquals(news.getSection().getName(), section.getName());
+        assertEquals(news.getSection().getThumbnail(), section.getThumbnail());
+        assertNotNull(news.getRecommenders());
     }
 
     @Test
@@ -128,6 +169,8 @@ public class ZhihuDailyMockTest {
         story.setId(1);
         story.setType(1);
         story.setTitle("title");
+        story.setGa_prefix("test-ga");
+        story.setImages(Collections.singletonList(""));
         response.setStories(Collections.singletonList(story));
         response.setDate(date);
 
@@ -137,8 +180,12 @@ public class ZhihuDailyMockTest {
 
         assertNotNull(beforeNews);
         assertEquals(beforeNews.getDate(), response.getDate());
-        assertEquals(beforeNews.getStories(), response.getStories());
-
+        Story expected = beforeNews.getStories().get(0);
+        assertEquals(expected.getId(), story.getId());
+        assertEquals(expected.getTitle(), story.getTitle());
+        assertEquals(expected.getGa_prefix(), story.getGa_prefix());
+        assertEquals(expected.getImages(), story.getImages());
+        assertEquals(expected.getType(), story.getType());
     }
 
     @Test
@@ -172,7 +219,9 @@ public class ZhihuDailyMockTest {
         comment.setTime(new Date());
         response.add(comment);
 
-        mockServerWith(response);
+        String json = "{\"comments\":" + gson.toJson(response) + "}";
+
+        mockServerWith(json);
 
         List<Comment> longComments = zhihuDaily.getLongComments(1).execute();
         assertNotNull(longComments);
@@ -193,10 +242,11 @@ public class ZhihuDailyMockTest {
         comment.setAvatar("address");
         comment.setLikes(0);
         comment.setContent("test-content");
-        comment.setTime(new Date());
         response.add(comment);
 
-        mockServerWith(response);
+        String json = "{\"comments\":" + gson.toJson(response) + "}";
+
+        mockServerWith(json);
 
         List<Comment> shortComments = zhihuDaily.getShortComments(1).execute();
         assertNotNull(shortComments);
@@ -216,20 +266,26 @@ public class ZhihuDailyMockTest {
         themeSummary.setId(1);
         themeSummary.setName("test-name");
         themeSummary.setThumbnail("test-thumbnail");
+        themeSummary.setColor(1);
 
         Themes response = new Themes();
         response.setLimit(1000);
         response.setOthers(Collections.singletonList(themeSummary));
+        response.setSubscribed(Collections.singletonList(""));
 
         mockServerWith(response);
 
         Themes themes = zhihuDaily.getThemes().execute();
         assertNotNull(themes);
         assertNotNull(themes.getLimit());
+        assertNotNull(themes.getSubscribed());
         assertTrue(themes.getOthers().size() == 1);
-        assertEquals(themes.getOthers().get(0).getName(), themeSummary.getName());
-        assertEquals(themes.getOthers().get(0).getId(), themeSummary.getId());
-        assertEquals(themes.getOthers().get(0).getDescription(), themeSummary.getDescription());
+        Themes.ThemeSummary expected = themes.getOthers().get(0);
+        assertEquals(expected.getName(), themeSummary.getName());
+        assertEquals(expected.getId(), themeSummary.getId());
+        assertEquals(expected.getDescription(), themeSummary.getDescription());
+        assertEquals(expected.getColor(), themeSummary.getColor());
+        assertEquals(expected.getThumbnail(), themeSummary.getThumbnail());
 
     }
 
@@ -241,6 +297,9 @@ public class ZhihuDailyMockTest {
         response.setDescription("test-description");
         response.setEditors(Collections.singletonList(new Editor()));
         response.setImage("test-image");
+        response.setColor(1);
+        response.setBackground("test-background");
+        response.setImage_source("test-image-source");
 
         mockServerWith(response);
 
@@ -249,8 +308,10 @@ public class ZhihuDailyMockTest {
         assertNotNull(theme);
         assertEquals(theme.getName(), response.getName());
         assertEquals(theme.getDescription(), response.getDescription());
-        assertEquals(theme.getEditors(), response.getEditors());
-        assertEquals(theme.getStories(), response.getStories());
+        assertEquals(theme.getColor(), response.getColor());
+        assertEquals(theme.getBackground(), response.getBackground());
+        assertEquals(theme.getImage(), response.getImage());
+        assertEquals(theme.getImage_source(), response.getImage_source());
     }
 
     @Test
@@ -286,19 +347,31 @@ public class ZhihuDailyMockTest {
         editor.setId(1);
         editor.setName("test-name");
         response.setEditors(Collections.singletonList(editor));
+        response.setItem_count(1);
+        response.setItems(Collections.singletonList(""));
 
         mockServerWith(response);
 
         Recommenders recommenders = zhihuDaily.getRecommenders(1).execute();
+        assertNotNull(recommenders);
         assertTrue(recommenders.getEditors().size() == 1);
+        assertEquals(recommenders.getItem_count(), response.getItem_count());
+        assertEquals(recommenders.getItems(), response.getItems());
+        assertNotNull(recommenders.getItem_count());
         Editor expected = recommenders.getEditors().get(0);
         assertEquals(expected.getName(), editor.getName());
         assertEquals(expected.getId(), editor.getId());
         assertEquals(expected.getBio(), editor.getBio());
+        assertEquals(expected.getUrl(), editor.getUrl());
+        assertEquals(expected.getAvatar(), editor.getAvatar());
     }
 
     public static void mockServerWith(Object o) {
         server.enqueue(new MockResponse().setBody(gson.toJson(o)));
+    }
+
+    public static void mockServerWith(String json) {
+        server.enqueue(new MockResponse().setBody(json));
     }
 
 }

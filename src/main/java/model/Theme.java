@@ -223,37 +223,6 @@ public class Theme {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Theme theme = (Theme) o;
-
-        if (color != theme.color) return false;
-        if (description != null ? !description.equals(theme.description) : theme.description != null) return false;
-        if (background != null ? !background.equals(theme.background) : theme.background != null) return false;
-        if (name != null ? !name.equals(theme.name) : theme.name != null) return false;
-        if (image != null ? !image.equals(theme.image) : theme.image != null) return false;
-        if (image_source != null ? !image_source.equals(theme.image_source) : theme.image_source != null) return false;
-        if (stories != null ? !stories.equals(theme.stories) : theme.stories != null) return false;
-        return !(editors != null ? !editors.equals(theme.editors) : theme.editors != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = description != null ? description.hashCode() : 0;
-        result = 31 * result + (background != null ? background.hashCode() : 0);
-        result = 31 * result + color;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (image != null ? image.hashCode() : 0);
-        result = 31 * result + (image_source != null ? image_source.hashCode() : 0);
-        result = 31 * result + (stories != null ? stories.hashCode() : 0);
-        result = 31 * result + (editors != null ? editors.hashCode() : 0);
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "Theme{" +
                 "description='" + description + '\'' +

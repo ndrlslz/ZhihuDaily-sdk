@@ -105,27 +105,6 @@ public class DailyNews {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        DailyNews latest = (DailyNews) o;
-
-        if (date != null ? !date.equals(latest.date) : latest.date != null) return false;
-        if (stories != null ? !stories.equals(latest.stories) : latest.stories != null) return false;
-        return !(top_stories != null ? !top_stories.equals(latest.top_stories) : latest.top_stories != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = date != null ? date.hashCode() : 0;
-        result = 31 * result + (stories != null ? stories.hashCode() : 0);
-        result = 31 * result + (top_stories != null ? top_stories.hashCode() : 0);
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "DailyNews{" +
                 "date='" + date + '\'' +

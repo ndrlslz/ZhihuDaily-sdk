@@ -133,31 +133,6 @@ public class TopStory {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        TopStory topStory = (TopStory) o;
-
-        if (type != topStory.type) return false;
-        if (id != topStory.id) return false;
-        if (title != null ? !title.equals(topStory.title) : topStory.title != null) return false;
-        if (image != null ? !image.equals(topStory.image) : topStory.image != null) return false;
-        return !(ga_prefix != null ? !ga_prefix.equals(topStory.ga_prefix) : topStory.ga_prefix != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = title != null ? title.hashCode() : 0;
-        result = 31 * result + (image != null ? image.hashCode() : 0);
-        result = 31 * result + (ga_prefix != null ? ga_prefix.hashCode() : 0);
-        result = 31 * result + type;
-        result = 31 * result + id;
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "TopStory{" +
                 "title='" + title + '\'' +

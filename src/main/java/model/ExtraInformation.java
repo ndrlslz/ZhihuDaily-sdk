@@ -108,29 +108,6 @@ public class ExtraInformation {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ExtraInformation that = (ExtraInformation) o;
-
-        if (long_comments != that.long_comments) return false;
-        if (popularity != that.popularity) return false;
-        if (short_comments != that.short_comments) return false;
-        return comments == that.comments;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = long_comments;
-        result = 31 * result + popularity;
-        result = 31 * result + short_comments;
-        result = 31 * result + comments;
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "ExtraInformation{" +
                 "long_comments=" + long_comments +

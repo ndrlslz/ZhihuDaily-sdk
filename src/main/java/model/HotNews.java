@@ -145,29 +145,6 @@ public class HotNews {
         }
 
         @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            HotNewsInfo that = (HotNewsInfo) o;
-
-            if (news_id != that.news_id) return false;
-            if (url != null ? !url.equals(that.url) : that.url != null) return false;
-            if (thumbnail != null ? !thumbnail.equals(that.thumbnail) : that.thumbnail != null) return false;
-            return !(title != null ? !title.equals(that.title) : that.title != null);
-
-        }
-
-        @Override
-        public int hashCode() {
-            int result = news_id;
-            result = 31 * result + (url != null ? url.hashCode() : 0);
-            result = 31 * result + (thumbnail != null ? thumbnail.hashCode() : 0);
-            result = 31 * result + (title != null ? title.hashCode() : 0);
-            return result;
-        }
-
-        @Override
         public String toString() {
             return "HotNewsInfo{" +
                     "news_id=" + news_id +
@@ -176,22 +153,6 @@ public class HotNews {
                     ", title='" + title + '\'' +
                     '}';
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        HotNews hotNews = (HotNews) o;
-
-        return !(recent != null ? !recent.equals(hotNews.recent) : hotNews.recent != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        return recent != null ? recent.hashCode() : 0;
     }
 
     @Override

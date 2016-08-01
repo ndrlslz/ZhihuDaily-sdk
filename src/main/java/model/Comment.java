@@ -156,33 +156,6 @@ public class Comment {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Comment comment = (Comment) o;
-
-        if (id != comment.id) return false;
-        if (likes != comment.likes) return false;
-        if (author != null ? !author.equals(comment.author) : comment.author != null) return false;
-        if (content != null ? !content.equals(comment.content) : comment.content != null) return false;
-        if (time != null ? !time.equals(comment.time) : comment.time != null) return false;
-        return !(avatar != null ? !avatar.equals(comment.avatar) : comment.avatar != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = author != null ? author.hashCode() : 0;
-        result = 31 * result + id;
-        result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + likes;
-        result = 31 * result + (time != null ? time.hashCode() : 0);
-        result = 31 * result + (avatar != null ? avatar.hashCode() : 0);
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "Comment{" +
                 "author='" + author + '\'' +

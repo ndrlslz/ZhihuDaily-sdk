@@ -412,27 +412,6 @@ public class News {
         }
 
         @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            Section section = (Section) o;
-
-            if (id != section.id) return false;
-            if (thumbnail != null ? !thumbnail.equals(section.thumbnail) : section.thumbnail != null) return false;
-            return !(name != null ? !name.equals(section.name) : section.name != null);
-
-        }
-
-        @Override
-        public int hashCode() {
-            int result = thumbnail != null ? thumbnail.hashCode() : 0;
-            result = 31 * result + id;
-            result = 31 * result + (name != null ? name.hashCode() : 0);
-            return result;
-        }
-
-        @Override
         public String toString() {
             return "Section{" +
                     "thumbnail='" + thumbnail + '\'' +
@@ -467,68 +446,11 @@ public class News {
         }
 
         @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            Recommender that = (Recommender) o;
-
-            return !(avatar != null ? !avatar.equals(that.avatar) : that.avatar != null);
-
-        }
-
-        @Override
-        public int hashCode() {
-            return avatar != null ? avatar.hashCode() : 0;
-        }
-
-        @Override
         public String toString() {
             return "Recommender{" +
                     "avatar='" + avatar + '\'' +
                     '}';
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        News news = (News) o;
-
-        if (type != news.type) return false;
-        if (id != news.id) return false;
-        if (body != null ? !body.equals(news.body) : news.body != null) return false;
-        if (image_source != null ? !image_source.equals(news.image_source) : news.image_source != null) return false;
-        if (title != null ? !title.equals(news.title) : news.title != null) return false;
-        if (image != null ? !image.equals(news.image) : news.image != null) return false;
-        if (share_url != null ? !share_url.equals(news.share_url) : news.share_url != null) return false;
-        if (ga_prefix != null ? !ga_prefix.equals(news.ga_prefix) : news.ga_prefix != null) return false;
-        if (section != null ? !section.equals(news.section) : news.section != null) return false;
-        if (js != null ? !js.equals(news.js) : news.js != null) return false;
-        if (recommenders != null ? !recommenders.equals(news.recommenders) : news.recommenders != null) return false;
-        if (images != null ? !images.equals(news.images) : news.images != null) return false;
-        return !(css != null ? !css.equals(news.css) : news.css != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = body != null ? body.hashCode() : 0;
-        result = 31 * result + (image_source != null ? image_source.hashCode() : 0);
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (image != null ? image.hashCode() : 0);
-        result = 31 * result + (share_url != null ? share_url.hashCode() : 0);
-        result = 31 * result + (ga_prefix != null ? ga_prefix.hashCode() : 0);
-        result = 31 * result + (section != null ? section.hashCode() : 0);
-        result = 31 * result + type;
-        result = 31 * result + id;
-        result = 31 * result + (js != null ? js.hashCode() : 0);
-        result = 31 * result + (recommenders != null ? recommenders.hashCode() : 0);
-        result = 31 * result + (images != null ? images.hashCode() : 0);
-        result = 31 * result + (css != null ? css.hashCode() : 0);
-        return result;
     }
 
     @Override
