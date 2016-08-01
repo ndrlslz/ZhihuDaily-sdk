@@ -83,5 +83,9 @@ public class Test {
 
         HotNews hotNews = zhihuDaily.getHotNews().execute();
         hotNews.getRecent().forEach(System.out::println);
+
+        Recommenders recommenders = zhihuDaily.getRecommenders(7101963).execute();
+        System.out.println(recommenders);
+        recommenders.getEditors().forEach(System.out::println);
     }
 }

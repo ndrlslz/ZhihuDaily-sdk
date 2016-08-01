@@ -121,4 +121,13 @@ public interface ZhihuDaily {
      */
     @GET("news/hot")
     ServiceCall<HotNews> getHotNews();
+
+    /**
+     * Get news recommenders
+     *
+     * @param id news id
+     * @return {@link Recommenders}
+     */
+    @GET("story/{id}/recommenders")
+    ServiceCall<Recommenders> getRecommenders(@Path("id") int id);
 }

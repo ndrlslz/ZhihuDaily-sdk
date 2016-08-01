@@ -162,4 +162,15 @@ public class ZhihuDailyUnitTest {
         assertNotNull(hotNewsInfo.getUrl());
         assertNotNull(hotNewsInfo.getTitle());
     }
+
+    @Test
+    public void testGetRecommenders() throws IOException {
+        final int id = 7101963;
+        Recommenders recommenders = zhihuDaily.getRecommenders(id).execute();
+
+        assertNotNull(recommenders);
+        assertNotNull(recommenders.getEditors());
+        assertNotNull(recommenders.getEditors().get(0).getId());
+        assertNotNull(recommenders.getEditors().get(0).getName());
+    }
 }

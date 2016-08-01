@@ -276,6 +276,27 @@ public class ZhihuDailyMockTest {
 
     }
 
+    @Test
+    public void testGetRecommenders() throws IOException {
+        Recommenders response = new Recommenders();
+        Editor editor = new Editor();
+        editor.setUrl("test-url");
+        editor.setAvatar("test-avatar");
+        editor.setBio("test-bio");
+        editor.setId(1);
+        editor.setName("test-name");
+        response.setEditors(Collections.singletonList(editor));
+
+        mockServerWith(response);
+
+        Recommenders recommenders = zhihuDaily.getRecommenders(1).execute();
+        assertTrue(recommenders.getEditors().size() == 1);
+        Editor expected = recommenders.getEditors().get(0);
+        assertEquals(expected.getName(), editor.getName());
+        assertEquals(expected.getId(), editor.getId());
+        assertEquals(expected.getBio(), editor.getBio());
+    }
+
     public static void mockServerWith(Object o) {
         server.enqueue(new MockResponse().setBody(gson.toJson(o)));
     }
