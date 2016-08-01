@@ -33,11 +33,11 @@ public class ZhihuDailyMockTest {
                 .registerTypeAdapter(COMMENTS, new CommentsDeserializer())
                 .registerTypeAdapter(Date.class, new DateTypeAdapter())
                 .create();
-        zhihuDaily = ZhihuDailyClient.create(server.url("/").toString());
     }
 
     @Before
     public void setUp() throws IOException {
+        zhihuDaily = ZhihuDailyClient.create(server.url("/").toString());
     }
 
     @Test

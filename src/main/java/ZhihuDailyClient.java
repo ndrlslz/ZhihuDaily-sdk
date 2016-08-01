@@ -15,7 +15,8 @@ import java.util.List;
 
 public final class ZhihuDailyClient {
     private static final String BASE_URL = "http://news-at.zhihu.com/api/4/";
-    private static final Type COMMENTS = new TypeToken<List<Comment>>() {}.getType();
+    private static final Type COMMENTS = new TypeToken<List<Comment>>() {
+    }.getType();
     private static final Gson gson;
     private static ZhihuDaily zhihuDaily;
 
@@ -34,7 +35,7 @@ public final class ZhihuDailyClient {
         return create(BASE_URL);
     }
 
-    public static ZhihuDaily create(String baseUrl) {
+    public static ZhihuDaily create(final String baseUrl) {
         if (zhihuDaily == null) {
             synchronized (ZhihuDailyClient.class) {
                 if (zhihuDaily == null) {
@@ -52,6 +53,10 @@ public final class ZhihuDailyClient {
                 .addCallAdapterFactory(ServiceCallAdapterFactory.create())
                 .build()
                 .create(ZhihuDaily.class);
+    }
+
+    public static void destory() {
+        zhihuDaily = null;
     }
 
 }

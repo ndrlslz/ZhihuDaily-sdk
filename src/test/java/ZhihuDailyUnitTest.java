@@ -11,6 +11,10 @@ import static org.junit.Assert.*;
 public class ZhihuDailyUnitTest {
     private ZhihuDaily zhihuDaily;
 
+    static {
+        ZhihuDailyClient.destory();
+    }
+
     @Before
     public void setUp() {
         zhihuDaily = ZhihuDailyClient.create();
