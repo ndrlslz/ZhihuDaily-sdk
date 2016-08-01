@@ -25,6 +25,8 @@ public class ZhihuDailyUnitTest {
         StartImage startImage = zhihuDaily.getStartImage(ImageSize.SIZE_1080P).execute();
 
         assertNotNull(startImage);
+        assertNotNull(startImage.toString());
+        assertNotNull(startImage.hashCode());
         assertNotNull(startImage.getImg());
         assertNotNull(startImage.getText());
     }
@@ -35,6 +37,8 @@ public class ZhihuDailyUnitTest {
         Version version = zhihuDaily.getVersionOfAndroid(currentVersion).execute();
 
         assertNotNull(version);
+        assertNotNull(version.toString());
+        assertNotNull(version.hashCode());
         assertNotNull(version.getLatest());
         assertNotNull(version.getStatus());
     }
@@ -45,6 +49,8 @@ public class ZhihuDailyUnitTest {
         Version version = zhihuDaily.getVersionOfIOS(currentVersion).execute();
 
         assertNotNull(version);
+        assertNotNull(version.toString());
+        assertNotNull(version.hashCode());
         assertNotNull(version.getStatus());
         assertNotNull(version.getLatest());
     }
@@ -54,6 +60,8 @@ public class ZhihuDailyUnitTest {
         DailyNews latestNews = zhihuDaily.getLatestNews().execute();
 
         assertNotNull(latestNews);
+        assertNotNull(latestNews.toString());
+        assertNotNull(latestNews.hashCode());
         assertNotNull(latestNews.getDate());
         assertNotNull(latestNews.getStories());
         assertTrue(latestNews.getStories().size() > 0);
@@ -69,6 +77,8 @@ public class ZhihuDailyUnitTest {
         News news = zhihuDaily.getNews(id).execute();
 
         assertNotNull(news);
+        assertNotNull(news.toString());
+        assertNotNull(news.hashCode());
         assertNotNull(news.getId());
         assertNotNull(news.getTitle());
         assertNotNull(news.getBody());
@@ -81,6 +91,8 @@ public class ZhihuDailyUnitTest {
         DailyNews beforeNews = zhihuDaily.getBeforeNews(date).execute();
 
         assertNotNull(beforeNews);
+        assertNotNull(beforeNews.toString());
+        assertNotNull(beforeNews.hashCode());
         assertNotNull(beforeNews.getStories());
         assertTrue(beforeNews.getStories().size() > 0);
         assertNotNull(beforeNews.getStories().get(0).getId());
@@ -93,6 +105,8 @@ public class ZhihuDailyUnitTest {
         ExtraInformation extraInformation = zhihuDaily.getExtraInformation(id).execute();
 
         assertNotNull(extraInformation);
+        assertNotNull(extraInformation.toString());
+        assertNotNull(extraInformation.hashCode());
         assertNotNull(extraInformation.getComments());
         assertNotNull(extraInformation.getLong_comments());
         assertNotNull(extraInformation.getPopularity());
@@ -105,6 +119,8 @@ public class ZhihuDailyUnitTest {
         List<Comment> comments = zhihuDaily.getLongComments(id).execute();
 
         assertNotNull(comments);
+        assertNotNull(comments.toString());
+        assertNotNull(comments.hashCode());
         assertTrue(comments.size() > 0);
         assertNotNull(comments.get(0));
         assertNotNull(comments.get(0).getId());
@@ -120,6 +136,8 @@ public class ZhihuDailyUnitTest {
         List<Comment> comments = zhihuDaily.getShortComments(id).execute();
 
         assertNotNull(comments);
+        assertNotNull(comments.toString());
+        assertNotNull(comments.hashCode());
         assertTrue(comments.size() > 0);
         assertNotNull(comments.get(0));
         assertNotNull(comments.get(0).getId());
@@ -133,6 +151,8 @@ public class ZhihuDailyUnitTest {
         Themes themes = zhihuDaily.getThemes().execute();
 
         assertNotNull(themes);
+        assertNotNull(themes.toString());
+        assertNotNull(themes.hashCode());
         assertNotNull(themes.getOthers());
         assertNotNull(themes.getLimit());
         assertTrue(themes.getOthers().size() > 0);
@@ -146,6 +166,8 @@ public class ZhihuDailyUnitTest {
         Theme theme = zhihuDaily.getTheme(id).execute();
 
         assertNotNull(theme);
+        assertNotNull(theme.toString());
+        assertNotNull(theme.hashCode());
         assertNotNull(theme.getName());
         assertNotNull(theme.getEditors());
         assertTrue(theme.getEditors().size() > 0);
@@ -158,6 +180,8 @@ public class ZhihuDailyUnitTest {
         HotNews hotNews = zhihuDaily.getHotNews().execute();
 
         assertNotNull(hotNews);
+        assertNotNull(hotNews.toString());
+        assertNotNull(hotNews.hashCode());
         assertNotNull(hotNews.getRecent());
         assertTrue(hotNews.getRecent().size() > 0);
 
@@ -173,6 +197,8 @@ public class ZhihuDailyUnitTest {
         Recommenders recommenders = zhihuDaily.getRecommenders(id).execute();
 
         assertNotNull(recommenders);
+        assertNotNull(recommenders.toString());
+        assertNotNull(recommenders.hashCode());
         assertNotNull(recommenders.getEditors());
         assertNotNull(recommenders.getEditors().get(0).getId());
         assertNotNull(recommenders.getEditors().get(0).getName());
