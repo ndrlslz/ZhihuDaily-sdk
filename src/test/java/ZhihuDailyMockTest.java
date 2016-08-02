@@ -139,7 +139,9 @@ public class ZhihuDailyMockTest {
         section.setName("test-name");
         section.setThumbnail("test-thumbnail");
         response.setSection(section);
-        response.setRecommenders(Collections.singletonList(new News.Recommender()));
+        News.Recommender recommender = new News.Recommender();
+        recommender.setAvatar("test-avatar");
+        response.setRecommenders(Collections.singletonList(recommender));
 
         mockServerWith(response);
 
@@ -159,6 +161,7 @@ public class ZhihuDailyMockTest {
         assertEquals(news.getSection().getName(), section.getName());
         assertEquals(news.getSection().getThumbnail(), section.getThumbnail());
         assertNotNull(news.getRecommenders());
+        assertEquals(news.getRecommenders().get(0).getAvatar(), recommender.getAvatar());
     }
 
     @Test
