@@ -12,7 +12,7 @@ public class ZhihuDailyUnitTest {
     private ZhihuDaily zhihuDaily;
 
     static {
-        ZhihuDailyClient.destory();
+        ZhihuDailyClient.destroy();
     }
 
     @Before

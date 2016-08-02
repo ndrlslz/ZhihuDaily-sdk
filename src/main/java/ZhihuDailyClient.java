@@ -55,7 +55,7 @@ public final class ZhihuDailyClient {
                 .create(ZhihuDaily.class);
     }
 
-    public static void destory() {
+    public static void destroy() {
         zhihuDaily = null;
     }
 
