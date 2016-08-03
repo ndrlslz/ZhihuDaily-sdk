@@ -4,10 +4,12 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import deserializer.DateTypeAdapter;
 import model.Comment;
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import deserializer.CommentsDeserializer;
 import service.ServiceCallAdapterFactory;
+import service.ServiceInterceptor;
 
 import java.lang.reflect.Type;
 import java.util.Date;
@@ -47,10 +49,15 @@ public final class ZhihuDailyClient {
     }
 
     private static ZhihuDaily createZhihuDaily(String baseUrl) {
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .addInterceptor(new ServiceInterceptor())
+                .build();
+
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(ServiceCallAdapterFactory.create())
+                .client(client)
                 .build()
                 .create(ZhihuDaily.class);
     }
