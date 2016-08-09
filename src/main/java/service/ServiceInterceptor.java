@@ -1,5 +1,6 @@
 package service;
 
+import exception.HttpException;
 import okhttp3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,7 @@ public class ServiceInterceptor implements Interceptor {
             logger.debug("Request success");
         } else {
             logger.error("Request fail");
+            throw new HttpException(response);
         }
         return response;
     }

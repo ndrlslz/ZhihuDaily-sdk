@@ -1,5 +1,6 @@
 package service;
 
+import exception.HttpException;
 import retrofit2.*;
 
 import java.io.IOException;
@@ -71,7 +72,7 @@ public class ServiceCallAdapterFactory extends CallAdapter.Factory {
 
                         @Override
                         public void onFailure(Call<R> call, Throwable t) {
-                            callback.onFailure(t);
+                            callback.onFailure((HttpException) t);
                         }
                     });
                 }
@@ -115,7 +116,7 @@ public class ServiceCallAdapterFactory extends CallAdapter.Factory {
 
                         @Override
                         public void onFailure(Call<R> call, Throwable t) {
-                            callback.onFailure(t);
+                            callback.onFailure((HttpException) t);
                         }
                     });
                 }

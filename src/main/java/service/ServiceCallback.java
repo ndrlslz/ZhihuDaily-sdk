@@ -1,5 +1,6 @@
 package service;
 
+import exception.HttpException;
 import retrofit2.Response;
 
 /**
@@ -20,5 +21,5 @@ public interface ServiceCallback<T> {
      * Invoked when a network exception occurred talking to the server or when an unexpected
      * exception occurred creating the request or processing the response.
      */
-    void onFailure(Throwable t);
+    void onFailure(HttpException exception);
 }
