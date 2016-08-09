@@ -1,10 +1,15 @@
 import api.ZhihuDaily;
+import exception.HttpException;
 import model.*;
 import org.junit.Before;
 import org.junit.Test;
+import service.ServiceCallback;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
 
@@ -26,6 +31,30 @@ public class ZhihuDailyUnitTest {
 
         assertNotNull(startImage);
         assertNotNull(startImage.toString());
+        assertNotNull(startImage.getImg());
+        assertNotNull(startImage.getText());
+    }
+
+    @Test
+    public void testGetStartImageWithAsync() throws IOException, InterruptedException {
+        BlockingQueue<Object> blockingQueue = new ArrayBlockingQueue<>(10);
+
+        zhihuDaily.getStartImage(ImageSize.SIZE_1080P).enqueue(new ServiceCallback<StartImage>() {
+            @Override
+            public void onResponse(StartImage object) {
+                blockingQueue.add(object);
+            }
+
+            @Override
+            public void onFailure(HttpException exception) {
+                blockingQueue.add(exception);
+            }
+        });
+
+        Object o = blockingQueue.take();
+        assertTrue(o instanceof StartImage);
+        StartImage startImage = (StartImage) o;
+        assertNotNull(startImage);
         assertNotNull(startImage.getImg());
         assertNotNull(startImage.getText());
     }

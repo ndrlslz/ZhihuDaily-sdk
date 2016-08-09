@@ -5,6 +5,9 @@ coverage:
     patch:
       default:
         target: 80%
+    project:
+      default:
+        target: 80%
 
 comment:
   layout: "header, diff, uncovered"

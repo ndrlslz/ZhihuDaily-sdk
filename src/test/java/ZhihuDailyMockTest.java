@@ -4,18 +4,22 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import deserializer.CommentsDeserializer;
 import deserializer.DateTypeAdapter;
+import exception.HttpException;
 import model.*;
+import okhttp3.Protocol;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.Before;
 import org.junit.Test;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import service.ServiceCallAdapterFactory;
+import service.ServiceCallback;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -52,6 +56,31 @@ public class ZhihuDailyMockTest {
         assertNotNull(startImage);
         assertEquals(startImage.getImg(), response.getImg());
         assertEquals(startImage.getText(), response.getText());
+    }
+
+    @Test
+    public void testGetStartImageWithException() throws IOException, InterruptedException {
+        mockServerWith404();
+
+        BlockingQueue<Object> blockingQueue = new ArrayBlockingQueue<>(10);
+        zhihuDaily.getStartImage(ImageSize.SIZE_1080P).enqueue(new ServiceCallback<StartImage>() {
+            @Override
+            public void onResponse(StartImage object) {
+                blockingQueue.add(object);
+            }
+
+            @Override
+            public void onFailure(HttpException exception) {
+                blockingQueue.add(exception);
+            }
+        });
+
+        Object o = blockingQueue.take();
+        assertTrue(o instanceof HttpException);
+        HttpException httpException = (HttpException) o;
+        assertNotNull(httpException.getCode());
+        assertNotNull(httpException.getMessage());
+        assertNotNull(httpException.getResponse());
     }
 
     @Test
@@ -377,4 +406,8 @@ public class ZhihuDailyMockTest {
         server.enqueue(new MockResponse().setBody(json));
     }
 
+    public static void mockServerWith404() {
+        server.enqueue(new MockResponse()
+                .setResponseCode(404));
+    }
 }

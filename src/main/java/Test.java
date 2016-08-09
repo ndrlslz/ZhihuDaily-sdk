@@ -26,16 +26,5 @@ public class Test {
         StartImage startImage = zhihuDaily.getStartImage(ImageSize.SIZE_1080P).execute();
         System.out.println(startImage);
 
-        zhihuDaily.getHotNews().enqueue(new ServiceCallback<HotNews>() {
-            @Override
-            public void onResponse(HotNews object) {
-                System.out.println(object);
-            }
-
-            @Override
-            public void onFailure(HttpException exception) {
-
-            }
-        });
     }
 }
