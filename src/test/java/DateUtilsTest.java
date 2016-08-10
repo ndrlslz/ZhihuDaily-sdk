@@ -1,8 +1,6 @@
 import org.junit.Test;
 import utils.DateUtils;
 
-import java.util.Date;
-
 import static org.junit.Assert.*;
 
 public class DateUtilsTest {
