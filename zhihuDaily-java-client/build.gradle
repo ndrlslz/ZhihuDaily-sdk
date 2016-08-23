@@ -5,3 +5,12 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '3.3.1'
 }
+
+check.dependsOn jacocoTestReport
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}

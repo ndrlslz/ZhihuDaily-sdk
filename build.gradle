@@ -22,15 +22,4 @@ allprojects {
         jcenter()
     }
 
-    check.dependsOn jacocoTestReport
-
 }
-
-
-jacocoTestReport {
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-}
-
