@@ -4,15 +4,22 @@ buildscript {
     }
 
     dependencies {
-    }
+        classpath 'com.netflix.nebula:nebula-project-plugin:3.1.0'
+        classpath 'com.netflix.nebula:nebula-release-plugin:4.0.1'
+        classpath 'com.netflix.nebula:nebula-bintray-plugin:3.3.4'
+        classpath "nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0"    }
 }
 
 allprojects {
     apply plugin: 'java'
     apply plugin: 'jacoco'
+    apply plugin: 'nebula.project'
+    apply plugin: 'nebula.nebula-bintray'
+    apply plugin: 'nebula.nebula-release'
 
     group 'me.ndrlslz'
-    version '1.0-SNAPSHOT'
+
+    project.version = "0.1.1"
 
     compileJava { options.encoding = "UTF-8" }
 
@@ -23,4 +30,42 @@ allprojects {
         jcenter()
     }
 
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    bintray {
+        user = properties.getProperty("bintray.user")
+        key = properties.getProperty("bintray.apikey")
+        pkg {
+            repo = 'maven'
+            name = 'zhihuDaily-sdk'
+            userOrg = 'ndrlslz'
+            licenses = ['MIT']
+            vcsUrl = 'https://github.com/ndrlslz/zhihuDaily-sdk.git'
+            publish = true
+            version {
+                name = "${project.version}"
+                desc = 'Java sdk for zhihu daily'
+                vcsTag = "${project.version}"
+            }
+        }
+    }
+
+    publishing {
+        publications {
+            nebula(MavenPublication) {
+                pom.withXml { xml ->
+                    configurations.compile.resolvedConfiguration.firstLevelModuleDependencies.each { dep ->
+                        asNode().dependencies[0].dependency.find {
+                            it.artifactId[0].text() == dep.moduleName &&
+                                    it.groupId[0].text() == dep.moduleGroup
+                        }?.scope[0]?.value = 'compile'
+                    }
+
+                }
+            }
+        }
+    }
+
 }
+
