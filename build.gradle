@@ -2,7 +2,6 @@ group 'me.ndrlslz'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
-apply plugin: 'jacoco'
 
 compileJava {options.encoding = "UTF-8"}
 
@@ -21,11 +20,3 @@ dependencies {
 
 }
 
-jacocoTestReport {
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-}
-
-check.dependsOn jacocoTestReport
