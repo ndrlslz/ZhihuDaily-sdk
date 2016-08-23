@@ -21,6 +21,9 @@ allprojects {
     repositories {
         jcenter()
     }
+
+    check.dependsOn jacocoTestReport
+
 }
 
 
@@ -31,4 +34,3 @@ jacocoTestReport {
     }
 }
 
-check.dependsOn jacocoTestReport
