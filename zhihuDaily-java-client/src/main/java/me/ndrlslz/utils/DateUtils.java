@@ -1,4 +1,4 @@
-package utils;
+package me.ndrlslz.utils;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

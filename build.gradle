@@ -19,7 +19,7 @@ allprojects {
 
     group 'me.ndrlslz'
 
-    project.version = "0.1.1"
+    project.version = "0.1.2-SNAPSHOT"
 
     compileJava { options.encoding = "UTF-8" }
 
@@ -30,12 +30,12 @@ allprojects {
         jcenter()
     }
 
-    Properties properties = new Properties()
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//    Properties properties = new Properties()
+//    properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
     bintray {
-        user = properties.getProperty("bintray.user")
-        key = properties.getProperty("bintray.apikey")
+//        user = properties.getProperty("bintray.user")
+//        key = properties.getProperty("bintray.apikey")
         pkg {
             repo = 'maven'
             name = 'zhihuDaily-sdk'
@@ -67,5 +67,16 @@ allprojects {
         }
     }
 
+    gradle.taskGraph.whenReady { graph ->
+        if (graph.hasTask(":snapshot") || graph.hasTask(":devSnapshot")) {
+            bintrayUpload.enabled = false
+            artifactoryPublish.enabled = true
+        }
+
+        if (graph.hasTask(":final") || graph.hasTask(":candidate")) {
+            bintrayUpload.enabled = true
+            artifactoryPublish.enabled = false
+        }
+    }
 }
 

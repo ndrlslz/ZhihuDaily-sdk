@@ -1,9 +1,9 @@
-package api;
+package me.ndrlslz.api;
 
-import model.*;
+import me.ndrlslz.model.*;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import service.ServiceCall;
+import me.ndrlslz.service.ServiceCall;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public interface ZhihuDaily {
     /**
      * Get startup interface image
      *
-     * @param size image size, see {@link model.ImageSize}
+     * @param size image size, see {@link me.ndrlslz.model.ImageSize}
      * @return {@link StartImage}
      */
     @GET("start-image/{size}")

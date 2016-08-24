@@ -1,4 +1,4 @@
-package service;
+package me.ndrlslz.service;
 
 import java.io.IOException;
 

@@ -1,15 +1,17 @@
-import api.ZhihuDaily;
+package me.ndrlslz;
+
+import me.ndrlslz.api.ZhihuDaily;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import deserializer.DateTypeAdapter;
-import model.Comment;
+import me.ndrlslz.deserializer.DateTypeAdapter;
+import me.ndrlslz.model.Comment;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import deserializer.CommentsDeserializer;
-import service.ServiceCallAdapterFactory;
-import service.ServiceInterceptor;
+import me.ndrlslz.deserializer.CommentsDeserializer;
+import me.ndrlslz.service.ServiceCallAdapterFactory;
+import me.ndrlslz.service.ServiceInterceptor;
 
 import java.lang.reflect.Type;
 import java.util.Date;

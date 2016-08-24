@@ -1,4 +1,4 @@
-package model;
+package me.ndrlslz.model;
 
 /**
  * Startup interface image

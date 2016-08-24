@@ -1,4 +1,4 @@
-package exception;
+package me.ndrlslz.exception;
 
 import okhttp3.Response;
 

@@ -1,6 +1,6 @@
-package service;
+package me.ndrlslz.service;
 
-import exception.HttpException;
+import me.ndrlslz.exception.HttpException;
 import retrofit2.Response;
 
 /**

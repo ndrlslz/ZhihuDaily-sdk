@@ -1,4 +1,4 @@
-package deserializer;
+package me.ndrlslz.deserializer;
 
 import com.google.gson.*;
 

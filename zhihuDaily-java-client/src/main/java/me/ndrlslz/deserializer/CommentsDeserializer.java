@@ -1,7 +1,7 @@
-package deserializer;
+package me.ndrlslz.deserializer;
 
 import com.google.gson.*;
-import model.Comment;
+import me.ndrlslz.model.Comment;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
