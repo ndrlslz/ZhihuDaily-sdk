@@ -17,7 +17,7 @@ allprojects {
     apply plugin: 'nebula.nebula-bintray'
     apply plugin: 'nebula.nebula-release'
 
-    group 'me.ndrlslz'
+    group 'com.github.ndrlslz'
 
     project.version = "0.1.2-SNAPSHOT"
 

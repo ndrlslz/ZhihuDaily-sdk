@@ -1,4 +1,4 @@
-import me.ndrlslz.utils.DateUtils;
+import com.github.ndrlslz.utils.DateUtils;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

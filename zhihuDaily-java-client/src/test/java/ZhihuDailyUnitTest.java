@@ -1,10 +1,10 @@
-import me.ndrlslz.api.ZhihuDaily;
-import me.ndrlslz.exception.HttpException;
-import me.ndrlslz.ZhihuDailyClient;
-import me.ndrlslz.model.*;
+import com.github.ndrlslz.api.ZhihuDaily;
+import com.github.ndrlslz.exception.HttpException;
+import com.github.ndrlslz.ZhihuDailyClient;
+import com.github.ndrlslz.model.*;
 import org.junit.Before;
 import org.junit.Test;
-import me.ndrlslz.service.ServiceCallback;
+import com.github.ndrlslz.service.ServiceCallback;
 
 import java.io.IOException;
 import java.util.List;

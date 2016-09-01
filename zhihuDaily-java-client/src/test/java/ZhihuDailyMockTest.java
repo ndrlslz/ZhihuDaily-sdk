@@ -1,17 +1,17 @@
-import me.ndrlslz.api.ZhihuDaily;
+import com.github.ndrlslz.api.ZhihuDaily;
+import com.github.ndrlslz.model.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import me.ndrlslz.deserializer.CommentsDeserializer;
-import me.ndrlslz.deserializer.DateTypeAdapter;
-import me.ndrlslz.exception.HttpException;
-import me.ndrlslz.ZhihuDailyClient;
-import me.ndrlslz.model.*;
+import com.github.ndrlslz.deserializer.CommentsDeserializer;
+import com.github.ndrlslz.deserializer.DateTypeAdapter;
+import com.github.ndrlslz.exception.HttpException;
+import com.github.ndrlslz.ZhihuDailyClient;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.Before;
 import org.junit.Test;
-import me.ndrlslz.service.ServiceCallback;
+import com.github.ndrlslz.service.ServiceCallback;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
