@@ -1,3 +1,6 @@
+description = 'A Java SDK for zhihu daily'
+
+
 buildscript {
     repositories {
         jcenter()
@@ -19,7 +22,7 @@ allprojects {
 
     group 'com.github.ndrlslz'
 
-    project.version = "0.1.2-SNAPSHOT"
+    project.version = "0.1.2"
 
     compileJava { options.encoding = "UTF-8" }
 
@@ -41,9 +44,16 @@ allprojects {
             name = 'zhihuDaily-sdk'
             userOrg = 'ndrlslz'
             licenses = ['MIT']
+            websiteUrl = 'https://github.com/ndrlslz/zhihuDaily-sdk'
+            issueTrackerUrl = 'https://github.com/ndrlslz/zhihuDaily-sdk/issues'
             vcsUrl = 'https://github.com/ndrlslz/zhihuDaily-sdk.git'
+            labels = ['zhihuDaily', 'java']
             publish = true
             version {
+//                gpg {
+//                    sign = true
+//                    passphrase = properties.getProperty("bintray.gpg.password")
+//                }
                 name = "${project.version}"
                 desc = 'Java sdk for zhihu daily'
                 vcsTag = "${project.version}"
@@ -61,7 +71,15 @@ allprojects {
                                     it.groupId[0].text() == dep.moduleGroup
                         }?.scope[0]?.value = 'compile'
                     }
+                    def licensesNode = xml.asNode()?.licenses
+                    if (!licensesNode) {
+                        licensesNode = xml.asNode().appendNode('licenses')
+                    }
 
+                    def apache = licensesNode.appendNode('license')
+                    apache.appendNode('name', 'MIT')
+                    apache.appendNode('url', 'https://opensource.org/licenses/MIT')
+                    apache.appendNode('distribution', 'repo')
                 }
             }
         }
@@ -80,3 +98,20 @@ allprojects {
     }
 }
 
+configure(subprojects) {
+    dependencies {
+        testCompile('junit:junit:4.12')
+    }
+
+    repositories {
+        jcenter()
+    }
+}
+
+contacts {
+    '330119374@qq.com' {
+        moniker 'ndrlslz'
+        github 'ndrlslz'
+        roles 'owner', 'notify'
+    }
+}
