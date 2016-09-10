@@ -1,3 +1,4 @@
 rootProject.name = 'zhihuDaily-sdk'
 include 'zhihuDaily-java-client'
+include 'zhihuDaily-java-examples'
 
