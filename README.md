@@ -13,6 +13,7 @@ ZhihuDaily zhihuDaily = ZhihuDailyClient.create();
 
 You can use the client to call API with `synchronous` and `asynchronous` way.
 
+
 To do a synchronous call, you need to invoke `execute()`.
 ```
 DailyNews dailyNews = zhihuDaily.getLatestNews().execute();
@@ -36,6 +37,10 @@ zhihuDaily.getLatestNews().enqueue(new ServiceCallback<DailyNews>() {
 
 # Example
 You can find more examples from here: [examples](https://github.com/ndrlslz/zhihuDaily-sdk/blob/master/zhihuDaily-java-examples/src/main/java/com/github/ndrlslz/Examples.java)
+
+# Requirements
+
+* Java8+
 
 # Installation
 
